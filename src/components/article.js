@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 
-class Article extends Component {
+class Article extends PureComponent {
     render() {
-        const { article, isOpen, toggleOpen } = this.props
+        const { article, isOpen } = this.props
         return (
             <div>
                 <h2>
                     {article.title}
                 </h2>
-                <button onClick = {toggleOpen}>
+                <button onClick = {this.toggleOpen}>
                     {isOpen ? 'close' : 'open'}
                 </button>
                 {this.getBody()}
@@ -27,6 +27,8 @@ class Article extends Component {
             </section>
         )
     }
+
+    toggleOpen = () => this.props.toggleOpen(this.props.article.id)
 }
 
 export default Article
