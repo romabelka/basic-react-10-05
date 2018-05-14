@@ -5,7 +5,7 @@ class Article extends PureComponent {
         const { article, isOpen } = this.props
         return (
             <div>
-                <h2>
+                <h2 ref = {this.setTitleRef}>
                     {article.title}
                 </h2>
                 <button onClick = {this.toggleOpen}>
@@ -27,6 +27,8 @@ class Article extends PureComponent {
             </section>
         )
     }
+
+    setTitleRef = title => console.log('---', title)
 
     toggleOpen = () => this.props.toggleOpen(this.props.article.id)
 }
