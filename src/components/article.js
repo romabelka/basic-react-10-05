@@ -1,8 +1,9 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
+import CommentList from './comment-list';
 
-class Article extends PureComponent {
+class Article extends Component {
     render() {
-        const { article, isOpen } = this.props
+        const { article, isOpen } = this.props;
         return (
             <div>
                 <h2 ref = {this.setTitleRef}>
@@ -17,20 +18,26 @@ class Article extends PureComponent {
     }
 
     getBody() {
-        const { isOpen, article } = this.props
+        const { isOpen, article } = this.props;
 
         if (!isOpen) return null
 
         return (
-            <section>
-                {article.text}
-            </section>
+            <div>
+                <section>
+                    {article.text}
+                    <CommentList
+                        comments = {article.comments || []}
+                        id = {article.id}
+                    />
+                </section>
+            </div>
         )
     }
 
-    setTitleRef = title => console.log('---', title)
-
-    toggleOpen = () => this.props.toggleOpen(this.props.article.id)
+    toggleOpen = () => {
+        this.props.toggleOpen(this.props.article.id);
+    }
 }
 
 export default Article
