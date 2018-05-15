@@ -14,7 +14,6 @@ class Article extends PureComponent {
                     {isOpen ? 'close' : 'open'}
                 </button>
                 {this.getBody()}
-                <CommentList comments={article.comments} />
             </div>
         )
     }
@@ -27,6 +26,7 @@ class Article extends PureComponent {
         return (
             <section>
                 {article.text}
+                <CommentList comments={article.comments} />
             </section>
         )
     }
