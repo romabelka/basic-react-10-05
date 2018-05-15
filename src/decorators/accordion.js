@@ -1,14 +1,14 @@
 // HOC === Higher Order Component === decorator
-import React from 'react'
+import React from 'react';
 
-export default (OriginalComponent) => class DecoratedComponent extends React.Component {
+export default (OriginalComponent) => class AccordionComponent extends React.Component {
     state = {
         openItemId: null
-    }
+    };
 
-    toggleOpenItem = openItemId => this.setState({ openItemId })
+    toggleOpenItem = openItemId =>  this.setState({ openItemId: this.state.openItemId === openItemId ? null : openItemId });
 
     render() {
-        return <OriginalComponent {...this.props} {...this.state} toggleOpenItem = {this.toggleOpenItem}/>
+        return <OriginalComponent {...this.props} {...this.state} toggleOpenItem={this.toggleOpenItem}/>
     }
 }

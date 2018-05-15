@@ -1,0 +1,68 @@
+.articles {
+	padding-top: 30px;
+}
+
+.articles__search {
+	margin-bottom: 30px;
+}
+
+.articles__list>ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+
+.articles__datepicker {
+    border: 1px solid #B3B3B3;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    text-align: center;
+    padding: 20px;
+}
+
+.article {
+	padding: 10px 20px;
+	border: 1px solid #B3B3B3;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
+
+.article__comments {
+    padding: 20px 0;
+    border-top: 1px solid #B3B3B3;
+    margin-top: 20px;
+}
+
+.article__comments ul {
+    margin-top: 30px;
+}
+
+.datepicker__value {
+    border-top: 1px solid #B3B3B3;
+    padding-top: 20px;
+    text-align: left;
+}
+
+h2.sub-header {
+	margin: 0 0 20px 0;
+}
+
+.Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
+    background-color: #f0f8ff !important;
+    color: #4a90e2;
+}
+.Selectable .DayPicker-Day {
+    border-radius: 0 !important;
+}
+.Selectable .DayPicker-Day--start {
+    border-top-left-radius: 50% !important;
+    border-bottom-left-radius: 50% !important;
+}
+.Selectable .DayPicker-Day--end {
+    border-top-right-radius: 50% !important;
+    border-bottom-right-radius: 50% !important;
+}
