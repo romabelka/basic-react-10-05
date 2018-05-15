@@ -3,9 +3,6 @@ import Comment from './comment';
 import accordion from '../decorators/accordion';
 
 class CommentList extends Component {
-    state = {
-        isOpen: true
-    }
     render() {
         return(
             <div>
