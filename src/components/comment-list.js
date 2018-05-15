@@ -25,7 +25,7 @@ class CommentList extends Component {
 
         return (
             <div>
-                {id === openItemId ? commentElements.map(item => item) : null}
+                {id === openItemId ? commentElements : null}
             </div>
         )
     }
