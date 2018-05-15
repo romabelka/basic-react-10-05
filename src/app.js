@@ -3,6 +3,7 @@ import { findDOMNode } from 'react-dom'
 import ArticleList from './components/article-list'
 import Chart from './components/chart'
 import UserForm from './components/user-form'
+import DatePeriod from './components/date-period'
 import Select from 'react-select'
 
 class App extends Component {
@@ -15,7 +16,8 @@ class App extends Component {
         return (
             <div>
                 <UserForm />
-                <Select options = {this.options} value = {this.state.selected} onChange = {this.changeSelection} />
+                <Select options = {this.options} value = {this.state.selected} onChange = {this.changeSelection} removeSelected={false} isMulti  />
+                <DatePeriod/>
                 <ArticleList articles = {this.props.articles} ref = {this.setArticleListRef}/>
                 <Chart articles = {this.props.articles}/>
             </div>
