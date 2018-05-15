@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import ArticleComment from './article-comments'
 
 class Article extends PureComponent {
     render() {
@@ -24,6 +25,7 @@ class Article extends PureComponent {
         return (
             <section>
                 {article.text}
+                <ArticleComment article={article}/>
             </section>
         )
     }

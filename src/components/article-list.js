@@ -1,13 +1,14 @@
-import React, {Component} from 'react'
+import React from 'react'
 import Article from './article'
+
 import accordion from '../decorators/accordion'
 
 function ArticleList(props) {
-    const articleElements = props.articles.map(article => <li key={article.id}>
+    const articleElements = props.articles.map(article =>
+    <li key={article.id}>
         <Article article={article}
                  isOpen={article.id === props.openItemId}
-                 toggleOpen={props.toggleOpenItem}
-        />
+                 toggleOpen={props.toggleOpenItem}/>
     </li>)
 
     return (
