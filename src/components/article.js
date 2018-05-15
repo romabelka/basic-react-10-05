@@ -36,7 +36,7 @@ class Article extends Component {
     }
 
     toggleOpen = () => {
-        !this.props.isOpen ? this.props.toggleOpen(this.props.article.id) : this.props.toggleOpen(null); // Нормально пофиксил?)
+        !this.props.isOpen ? this.props.toggleOpenItem(this.props.article.id) : this.props.toggleOpenItem(null); // Нормально пофиксил?)
     }
 }
 
