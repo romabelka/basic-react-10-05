@@ -19,6 +19,7 @@ class App extends Component {
                 <Select options = {this.options}
                         value = {this.state.selected}
                         onChange = {this.changeSelection}
+                        hideSelectedOptions={false}
                         isMulti/>
 
                 <ArticleList
