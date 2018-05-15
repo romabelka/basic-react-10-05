@@ -7,9 +7,9 @@ class UserForm extends Component {
 
     render() {
         return (
-            <div>
+            <span>
                 User: <input value = {this.state.username} onChange = {this.handleUserChange} />
-            </div>
+            </span>
         )
     }
 
