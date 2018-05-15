@@ -1,23 +1,26 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react'
+import CommentList from "./comment-list";
 
 class Article extends PureComponent {
+
     render() {
-        const { article, isOpen } = this.props
+        const {article, isOpen} = this.props
         return (
             <div>
-                <h2 ref = {this.setTitleRef}>
+                <h2 ref={this.setTitleRef}>
                     {article.title}
                 </h2>
-                <button onClick = {this.toggleOpen}>
+                <button onClick={this.toggleOpen}>
                     {isOpen ? 'close' : 'open'}
                 </button>
                 {this.getBody()}
+                <CommentList comments={article.comments} />
             </div>
         )
     }
 
     getBody() {
-        const { isOpen, article } = this.props
+        const {isOpen, article} = this.props
 
         if (!isOpen) return null
 
