@@ -1,24 +1,37 @@
-import React, {Component} from 'react'
-import { findDOMNode } from 'react-dom'
-import ArticleList from './components/article-list'
-import Chart from './components/chart'
-import UserForm from './components/user-form'
-import Select from 'react-select'
+import React, {Component} from 'react';
+import ArticleList from './components/article-list';
+import Select from 'react-select';
+import DatePicker from './components/datepicker';
+
+import 'bootstrap/dist/css/bootstrap.css';
+import './styles/style.css';
 
 class App extends Component {
     state = {
-        selected: null
-    }
+        selected: null,
+        dateSelected: null
+    };
 
     render() {
-        console.log('---', this.state)
+        console.log('---', this.state);
         return (
-            <div>
-                <UserForm />
-                <Select options = {this.options} value = {this.state.selected} onChange = {this.changeSelection} />
-                <ArticleList articles = {this.props.articles} ref = {this.setArticleListRef}/>
-                <Chart articles = {this.props.articles}/>
-            </div>
+            <section className="articles container">
+                <div className="row">
+                    <main className="articles__list col-sm-8">
+                        <ArticleList articles={this.props.articles}/>
+                    </main>
+                    <aside className="articles__aside col-sm-4">
+                        <div className="articles__search">
+                            <Select options={this.options}
+                                    value={this.state.selected}
+                                    onChange={this.changeSelection}
+                                    placeholder="Выберите..."
+                                    isMulti />
+                        </div>
+                        <DatePicker />
+                    </aside>
+                </div>
+            </section>
         )
     }
 
@@ -29,11 +42,7 @@ class App extends Component {
         }))
     }
 
-    changeSelection = selected => this.setState({ selected })
-
-    setArticleListRef = (articleList) => {
-        console.log('---', 'article list', findDOMNode(articleList))
-    }
+    changeSelection = selected => this.setState({ selected });
 }
 
-export default App
+export default App;
