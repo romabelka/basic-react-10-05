@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import CommentList from './comment-list'
 
 class Article extends PureComponent {
     render() {
@@ -12,6 +13,7 @@ class Article extends PureComponent {
                     {isOpen ? 'close' : 'open'}
                 </button>
                 {this.getBody()}
+                <CommentList comments={article.comments} />
             </div>
         )
     }
