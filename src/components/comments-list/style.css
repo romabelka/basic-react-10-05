@@ -1,0 +1,10 @@
+.comments-list {
+    padding: 0 50px;
+    font-size: .8em;
+}
+
+.toggle-comments {
+    cursor: pointer;
+    font-size: .8em;
+    border-bottom: 1px dashed;
+}
