@@ -4,6 +4,7 @@ import ArticleList from './components/article-list'
 import Chart from './components/chart'
 import UserForm from './components/user-form'
 import Select from 'react-select'
+import Calendar from './components/calendar';
 
 class App extends Component {
     state = {
@@ -15,7 +16,8 @@ class App extends Component {
         return (
             <div>
                 <UserForm />
-                <Select options = {this.options} value = {this.state.selected} onChange = {this.changeSelection} />
+                <Select options = {this.options} value = {this.state.selected} onChange = {this.changeSelection} multi = {true} />
+                <Calendar />
                 <ArticleList articles = {this.props.articles} ref = {this.setArticleListRef}/>
                 <Chart articles = {this.props.articles}/>
             </div>
@@ -25,7 +27,8 @@ class App extends Component {
     get options() {
         return this.props.articles.map(article => ({
             label: article.title,
-            value: article.id
+            value: article.id,
+            clearableValue: false
         }))
     }
 
