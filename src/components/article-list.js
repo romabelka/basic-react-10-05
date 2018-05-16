@@ -5,6 +5,7 @@ import accordion from '../decorators/accordion'
 function ArticleList(props) {
     const articleElements = props.articles.map(article => <li key={article.id}>
         <Article article={article}
+                 comments={article.comments}
                  isOpen={article.id === props.openItemId}
                  toggleOpen={props.toggleOpenItem}
         />
