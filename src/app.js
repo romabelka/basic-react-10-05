@@ -4,6 +4,7 @@ import ArticleList from './components/article-list'
 import Chart from './components/chart'
 import UserForm from './components/user-form'
 import Select from 'react-select'
+import DateFilter from './components/date-filter'
 
 class App extends Component {
     state = {
@@ -20,6 +21,7 @@ class App extends Component {
                         onChange = {this.changeSelection}
                         isMulti
                         />
+                <DateFilter />
                 <ArticleList articles = {this.props.articles} ref = {this.setArticleListRef}/>
                 <Chart articles = {this.props.articles}/>
             </div>
