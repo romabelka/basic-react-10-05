@@ -9,6 +9,7 @@ class Article extends PureComponent {
                 <h2 ref={this.setTitleRef}>
                     {article.title}
                 </h2>
+                <h5><sub>{this.getDate()}</sub></h5>
                 <button onClick={this.toggleOpen}>
                     {isOpen ? 'close' : 'open'}
                 </button>
@@ -16,6 +17,11 @@ class Article extends PureComponent {
                 {this.getComments()}
             </div>
         )
+    }
+
+    getDate() {
+        let date = new Date(this.props.article.date);
+        return date.toString();
     }
 
     getBody() {
