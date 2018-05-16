@@ -51,7 +51,7 @@ class UserDate extends Component {
     handleDayClick (day) {
         const range = DateUtils.addDayToRange(day, this.state);
         this.setState(range);
-        if (range.from && range.to) this.togglePicker();
+        // if (range.from && range.to) this.togglePicker();
     }
 
     getDates () {
