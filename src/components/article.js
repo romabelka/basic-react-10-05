@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react'
+import Commentaries from './commentaries'
 
 class Article extends PureComponent {
     render() {
-        const { article, isOpen } = this.props
+        const { article, comments, isOpen } = this.props
         return (
             <div>
                 <h2 ref = {this.setTitleRef}>
@@ -12,6 +13,7 @@ class Article extends PureComponent {
                     {isOpen ? 'close' : 'open'}
                 </button>
                 {this.getBody()}
+                {isOpen && <Commentaries comments={ comments } />}
             </div>
         )
     }
