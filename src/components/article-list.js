@@ -6,7 +6,7 @@ function ArticleList(props) {
     const articleElements = props.articles.map(article => <li key={article.id}>
         <Article article={article}
                  isOpen={article.id === props.openItemId}
-                 toggleOpen={props.toggleOpenItem}
+                 toggleOpenItem={props.toggleOpenItem}
         />
     </li>)
 
