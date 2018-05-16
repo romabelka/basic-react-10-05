@@ -6,14 +6,14 @@ import './style.css'
 class UserDate extends Component {
     constructor (props) {
         super(props);
-        this.dates = props.articles.map(article => new Date(article.date).getTime()).sort().map(ms => new Date(ms));
+        this.props = props;
+        this.dates = this.getDates();
         this.handleDayClick = this.handleDayClick.bind(this);
         this.state = {
-            from: this.dates[0],
-            to: this.dates[this.dates.length - 1],
+            from: this.getMinDate(),
+            to: this.getMaxDate(),
             pickerVisible: false
         };
-        console.log(this.dates);
     }
 
     render () {
@@ -34,7 +34,8 @@ class UserDate extends Component {
                                     before: this.dates[0],
                                     after: this.dates[this.dates.length - 1]
                                  }]}
-                                 month={new Date(this.dates[0].setDate(1))}
+                                 numberOfMonths={3}
+                                 month={new Date(this.dates[0].getFullYear(), this.dates[0].getMonth())}
                                  className = 'Selectable' />
                     : null}
             </span>
@@ -51,6 +52,16 @@ class UserDate extends Component {
         const range = DateUtils.addDayToRange(day, this.state);
         this.setState(range);
         if (range.from && range.to) this.togglePicker();
+    }
+
+    getDates () {
+        return this.props.articles.map(article => new Date(article.date).getTime()).sort().map(ms => new Date(ms));
+    }
+    getMinDate () {
+        return this.dates[0];
+    }
+    getMaxDate () {
+        return this.dates[this.dates.length - 1];
     }
 
     getDatesString () {
