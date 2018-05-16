@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import CommentList from './comment-list'
 
 class Article extends PureComponent {
     render() {
@@ -17,13 +18,13 @@ class Article extends PureComponent {
     }
 
     getBody() {
-        const { isOpen, article } = this.props
-
+        const { article, isOpen } = this.props
         if (!isOpen) return null
 
         return (
             <section>
                 {article.text}
+                <CommentList comments={article.comments}/>
             </section>
         )
     }
