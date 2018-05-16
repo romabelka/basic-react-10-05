@@ -7,6 +7,7 @@ function ArticleList(props) {
         <Article article={article}
                  isOpen={article.id === props.openItemId}
                  toggleOpen={props.toggleOpenItem}
+
         />
     </li>)
 

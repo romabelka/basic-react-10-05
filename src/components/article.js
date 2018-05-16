@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 
+
 class Article extends PureComponent {
     render() {
         const { article, isOpen } = this.props
@@ -10,6 +11,9 @@ class Article extends PureComponent {
                 </h2>
                 <button onClick = {this.toggleOpen}>
                     {isOpen ? 'close' : 'open'}
+                </button>
+                <button onClick = {this.commentsOpen}>
+                    {isOpen ? 'close Comments' : 'open Comments'}
                 </button>
                 {this.getBody()}
             </div>
