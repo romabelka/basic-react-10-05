@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 import Article from './article'
 import accordion from '../decorators/accordion'
 
