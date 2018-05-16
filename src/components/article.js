@@ -28,7 +28,6 @@ class Article extends Component {
                     {article.text}
                     <CommentList
                         comments = {article.comments || []}
-                        id = {article.id}
                     />
                 </section>
             </div>

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Comment from './comment';
-import accordion from '../decorators/accordion';
+import toggleopen from '../decorators/toggleopen';
 
 class CommentList extends Component {
     render() {
+        const {isOpen} = this.props;
         return(
             <div>
-                <button onClick = {this.toggleOpen}>open comments</button>
+                <button onClick = {this.toggleOpen}>{ isOpen ? 'close' : 'open' }</button>
                 <ul>
                     {this.getBody()}
                 </ul>
@@ -15,20 +16,22 @@ class CommentList extends Component {
     }
 
     getBody() {
-        const {comments, id, openItemId} = this.props;
+        const {comments, isOpen} = this.props;
         const commentElements = comments.map(comment => <li key={comment.id}>
             <Comment comment = { comment }/>
         </li>);
 
         return (
             <div>
-                {id === openItemId ? commentElements : null}
+                {isOpen ? commentElements : null}
             </div>
         )
     }
 
     toggleOpen = () => {
-        !this.props.openItemId ? this.props.toggleOpenItem(this.props.id) : this.props.toggleOpenItem(null);
+        const {isOpen} = this.props;
+        this.props.toggleOpenItem(!isOpen);
     }
+
 }
-export default accordion(CommentList);
+export default toggleopen(CommentList);
