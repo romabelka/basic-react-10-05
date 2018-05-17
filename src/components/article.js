@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import toggleOpen from '../decorators/toggle-open'
 
 class Article extends PureComponent {
     render() {
@@ -17,14 +18,31 @@ class Article extends PureComponent {
     }
 
     getBody() {
-        const { isOpen, article } = this.props
+        const { isOpen, article, showComments, isShowComments } = this.props
 
         if (!isOpen) return null
 
         return (
             <section>
-                {article.text}
+                <div>
+                    {article.text}
+                </div>
+                <button onClick={showComments}>Comments</button>
+                {isShowComments && this.getComments()}
             </section>
+        )
+    }
+
+    getComments() {
+        const { article } = this.props
+        return (
+            <ul>
+                {article.comments.map(comment =>
+                    (<li>
+                        {comment.text}
+                    </li>)
+                )}
+            </ul>
         )
     }
 
@@ -33,4 +51,4 @@ class Article extends PureComponent {
     toggleOpen = () => this.props.toggleOpen(this.props.article.id)
 }
 
-export default Article
+export default toggleOpen(Article)
