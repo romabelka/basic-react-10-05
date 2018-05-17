@@ -3,17 +3,16 @@ import DateRange from './date-range'
 import SelectFilter from './select'
 
 class Filters extends Component {
-    static propTypes = {
-    };
+  static propTypes = {}
 
-    render() {
-        return (
-            <div>
-                <SelectFilter articles = {this.props.articles}/>
-                <DateRange />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <SelectFilter articles={this.props.articles} />
+        <DateRange />
+      </div>
+    )
+  }
 }
 
 export default Filters
