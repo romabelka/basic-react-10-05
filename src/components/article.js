@@ -28,8 +28,10 @@ class Article extends PureComponent {
     const { article, isOpen } = this.props
     return (
       <div>
-        <h2 ref={this.setTitleRef}>{article.title}</h2>
-        <button onClick={this.toggleOpen}>{isOpen ? 'close' : 'open'}</button>
+        <h2>{article.title}</h2>
+        <button onClick={this.toggleOpen} className="test__article_btn">
+          {isOpen ? 'close' : 'open'}
+        </button>
         {this.getBody()}
       </div>
     )
@@ -41,14 +43,12 @@ class Article extends PureComponent {
     if (this.state.hasError) return <h3>Some Error</h3>
 
     return (
-      <section>
+      <section className="test__article_body">
         {article.text}
         <CommentList comments={article.comments} />
       </section>
     )
   }
-
-  setTitleRef = (title) => console.log('---', title)
 
   toggleOpen = () => this.props.toggleOpen(this.props.article.id)
 }
