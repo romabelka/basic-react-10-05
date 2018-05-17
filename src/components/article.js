@@ -13,6 +13,17 @@ class Article extends PureComponent {
     isOpen: PropTypes.bool,
     toggleOpen: PropTypes.func.isRequired
   }
+
+  state = {
+    hasError: false
+  }
+
+  componentDidCatch() {
+    this.setState({
+      hasError: true
+    })
+  }
+
   render() {
     const { article, isOpen } = this.props
     return (
@@ -27,6 +38,7 @@ class Article extends PureComponent {
   getBody() {
     const { article, isOpen } = this.props
     if (!isOpen) return null
+    if (this.state.hasError) return <h3>Some Error</h3>
 
     return (
       <section>
