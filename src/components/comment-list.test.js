@@ -18,7 +18,7 @@ describe('CommentList', () => {
   })
 
   it('no comments yet', () => {
-    const wrapper = mount(<CommentList comments={articles[6].comments} />)
+    const wrapper = mount(<CommentList />)
 
     wrapper
       .find('.test__comment-list-btn')
