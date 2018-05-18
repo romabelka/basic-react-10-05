@@ -20,7 +20,7 @@ class App extends Component {
         return (
             <div>
                 <UserForm />
-                <Select options = {this.options} value = {this.state.selected} onChange = {this.changeSelection} multi={true} />
+                <Select options = {this.options} value = {this.state.selected} onChange = {this.changeSelection}  isMulti />
                 <MyForm />
                 <ArticleList articles = {this.props.articles} ref = {this.setArticleListRef}/>
                 <Chart articles = {this.props.articles}/>

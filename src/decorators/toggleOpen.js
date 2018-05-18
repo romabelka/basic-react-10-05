@@ -3,12 +3,12 @@ import React from 'react'
 
 export default (OriginalComponent) => class DecoratedComponent extends React.Component {
     state = {
-        openItems: null
+        isOpen: false
     }
 
-    commentsOpen = openItems => this.setState({ openItems })
+    toggleOpen  = () => this.setState({isOpen: !this.state.isOpen})
 
     render() {
-        return <OriginalComponent {...this.props} {...this.state} commentsOpen = {this.commentsOpen}/>
+        return <OriginalComponent {...this.props} {...this.state} toggleOpen = {this.toggleOpen}/>
     }
 }
