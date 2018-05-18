@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Comment from './comment'
+import Comment from './comment/'
 import toggleOpen from '../decorators/toggleOpen'
 
 class CommentList extends Component {
@@ -16,7 +16,9 @@ class CommentList extends Component {
     const text = isOpen ? 'hide comments' : 'show comments'
     return (
       <div>
-        <button onClick={toggleOpen}>{text}</button>
+        <button onClick={toggleOpen} className="test__comment-list-btn">
+          {text}
+        </button>
         {this.getBody()}
       </div>
     )
@@ -26,7 +28,7 @@ class CommentList extends Component {
     const { comments, isOpen } = this.props
     if (!isOpen) return null
 
-    const body = comments.length ? (
+    const body = comments ? (
       <ul>
         {comments.map((comment) => (
           <li key={comment.id}>
@@ -35,7 +37,7 @@ class CommentList extends Component {
         ))}
       </ul>
     ) : (
-      <h3>No comments yet</h3>
+      <h3 className="test__comment-list-empty">No comments yet</h3>
     )
 
     return <div>{body}</div>
