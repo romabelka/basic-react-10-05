@@ -31,6 +31,20 @@ describe('ArticleList', () => {
     expect(wrapper.find('.test__article_body').length).toEqual(1)
   })
 
+  it('should closed first article', () => {
+    const wrapper = mount(
+      <ArticleList articles={articles} toggleOpenItem={() => {}} />
+    )
+
+    wrapper
+      .find('.test__article_btn')
+      .at(0)
+      .simulate('click')
+      .simulate('click')
+
+    expect(wrapper.find('.test__article_body').length).toEqual(0)
+  })
+
   it('should request data fetching', (done) => {
     render(
       <ArticleList
