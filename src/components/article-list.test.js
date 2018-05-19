@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallow, render, mount } from 'enzyme'
 import DecoratedArticleList, { ArticleList } from './article-list'
+import Article from './article'
 import articles from '../fixtures'
 
 describe('ArticleList', () => {
@@ -29,6 +30,24 @@ describe('ArticleList', () => {
       .simulate('click')
 
     expect(wrapper.find('.test__article_body').length).toEqual(1)
+  })
+
+  it('should close first article', (done) => {
+    const wrapper = mount(
+      <Article article={articles[0]} isOpen={true} toggleOpen={() => {}} />
+    )
+
+    expect(wrapper.find('.test__article_body').length).toEqual(1)
+
+    wrapper
+      .find('.test__article_btn')
+      .at(0)
+      .simulate('click')
+
+    setTimeout(() => {
+      done()
+      expect(wrapper.find('.test__article_body').length).toEqual(0)
+    }, 0)
   })
 
   it('should request data fetching', (done) => {
