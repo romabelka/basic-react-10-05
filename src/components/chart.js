@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class Chart extends Component {
+  static propTypes = {
+    articles: PropTypes.array.isRequired
+  }
+
   render() {
     return <div ref={this.setContainerRef} />
   }
