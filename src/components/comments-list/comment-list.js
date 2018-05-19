@@ -24,7 +24,6 @@ class CommentList extends Component {
           transitionName="comments"
           transitionEnterTimeout={500}
           transitionLeaveTimeout={300}
-          transitionAppearTimeout={1000}
         >
           {this.getBody()}
         </CSSTransition>
