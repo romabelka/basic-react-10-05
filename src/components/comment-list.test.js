@@ -35,9 +35,6 @@ describe('CommentList', () => {
       .find('.test__comment-list-btn')
       .at(0)
       .simulate('click')
-    wrapper
-      .find('.test__comment-list-btn')
-      .at(0)
       .simulate('click')
 
     expect(wrapper.find('.test__CommentList-body_item').length).toBe(0)
