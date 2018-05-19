@@ -4,5 +4,3 @@ import App from './app'
 import articles from './fixtures'
 
 ReactDOM.render(<App articles = {articles} />, document.getElementById('root'))
-
-/*initial*/
