@@ -42,7 +42,7 @@ describe('CommentList', () => {
     )
   })
 
-  it('should close comments on click', () => {
+  it('should close comments on click', (done) => {
     const wrapper = mount(
       <DecoratedCommentList comments={articles[0].comments} />
     )
@@ -56,7 +56,10 @@ describe('CommentList', () => {
       .simulate('click')
 
     setTimeout(() => {
+      wrapper.simulate('transitionEnd')
+
       expect(wrapper.find('.test__comment-item').length).toEqual(0)
-    }, 1)
+      done()
+    }, 800)
   })
 })

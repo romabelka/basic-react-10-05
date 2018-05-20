@@ -31,7 +31,7 @@ describe('ArticleList', () => {
     expect(wrapper.find('.test__article_body').length).toEqual(1)
   })
 
-  it('should close first article', () => {
+  it('should close first article', (done) => {
     const wrapper = mount(<DecoratedArticleList articles={articles} />)
 
     wrapper
@@ -43,8 +43,11 @@ describe('ArticleList', () => {
       .simulate('click')
 
     setTimeout(() => {
+      wrapper.simulate('transitionEnd')
+
       expect(wrapper.find('.test__article_body').length).toEqual(0)
-    }, 1)
+      done()
+    }, 800)
   })
 
   it('should request data fetching', (done) => {
