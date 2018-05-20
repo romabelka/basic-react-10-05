@@ -2,6 +2,10 @@ import React from 'react'
 import { shallow, render, mount } from 'enzyme'
 import ToggleOpenComments, { CommentList } from '../comments/comment-list.js'
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
 describe('CommentList', () => {
   const hideCommentsText = 'hide comments'
   const showCommentsText = 'show comments'
@@ -73,18 +77,35 @@ describe('CommentList', () => {
     )
   })
 
-  it('should be closed when click hide', () => {
+  it('should be closed when click hide', async (done) => {
     const wrapper = mount(<ToggleOpenComments comments={comments} />)
 
     wrapper
       .find('.test__comment-button')
       .at(0)
       .simulate('click') //открываем коменты
+
+    await sleep(1000)
+
+    expect(wrapper.find('.test__comment-button').text()).toEqual(
+      hideCommentsText
+    )
+    expect(wrapper.find('.test__comment-list_item').length).toEqual(2)
+
+    wrapper
+      .find('.test__comment-button')
+      .at(0)
       .simulate('click') //скрываем
 
-    expect(wrapper.find('.test__comment-list_item').length).toEqual(0)
+    await sleep(1000)
+
+    wrapper.simulate('transitionEnd')
+
     expect(wrapper.find('.test__comment-button').text()).toEqual(
       showCommentsText
     )
+    expect(wrapper.find('.test__comment-list_item').length).toEqual(0)
+
+    done()
   })
 })
