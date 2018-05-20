@@ -31,6 +31,25 @@ describe('ArticleList', () => {
     expect(wrapper.find('.test__article_body').length).toEqual(1)
   })
 
+  it('article should closed', () => {
+    const wrapper = mount(<DecoratedArticleList articles={articles} />)
+
+    wrapper
+      .find('.test__article_btn')
+      .first()
+      .simulate('click')
+
+    expect(wrapper.state().openItemId).toEqual(articles[0].id)
+
+    wrapper
+      .find('.test__article_btn')
+      .first()
+      .simulate('click')
+
+    expect(wrapper.state().openItemId).toEqual(null)
+    // but I do not find, how test it with DOM
+  })
+
   it('should request data fetching', (done) => {
     render(
       <ArticleList
