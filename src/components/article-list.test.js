@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallow, render, mount } from 'enzyme'
 import DecoratedArticleList, { ArticleList } from './article-list'
+import Article from './article'
 import articles from '../fixtures'
 
 describe('ArticleList', () => {
@@ -40,4 +41,17 @@ describe('ArticleList', () => {
       />
     )
   })
+
+  it('should close  article', () => {
+    const wrapper = mount(<DecoratedArticleList articles={articles}  />)
+
+    wrapper
+      .find('.test__article_btn')
+      .at(0)
+      .simulate('dblclick')
+
+
+    expect(wrapper.find('.test__article_btn').length).toEqual(articles.length)
+  })
+
 })
