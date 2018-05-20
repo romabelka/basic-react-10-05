@@ -1,0 +1,24 @@
+  .comment--flip-x-in {
+    transform: rotateX(0deg);
+    transition: visibility 1s, transform 1s;
+  }
+  .comment--flip-x-out {
+    transform: rotateX(-90deg);
+    overflow: hidden;
+    transition: visibility 1s, transform 1s;
+  }
+ 
+  .comment-enter {
+    opacity: 0.01;
+  }
+  
+  .comment-enter.comment-enter-active {
+    opacity: 1;
+    transition: opacity 500ms ease-in;
+  }
+  
+  .comment-leave.comment-leave-active {
+    transform: rotateX(-90deg);
+    transition: visibility 1s, transform 1s;
+  }
+  
