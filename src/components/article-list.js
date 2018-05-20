@@ -1,8 +1,23 @@
 import React, { Component } from 'react'
-import Article from './article'
+import Article from './article/article'
 import accordion from '../decorators/accordion'
+import PropTypes from 'prop-types'
 
 export class ArticleList extends Component {
+  static propTypes = {
+    articles: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        title: PropTypes.string.isRequired,
+        text: PropTypes.string,
+        comments: PropTypes.array
+      })
+    ),
+    //from accordion decorator
+    toggleOpenItem: PropTypes.func.isRequired,
+    openItemId: PropTypes.string
+  }
+
   componentWillMount() {
     this.props.fetchData && this.props.fetchData()
   }
