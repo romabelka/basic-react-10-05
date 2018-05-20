@@ -2,6 +2,7 @@ import React from 'react'
 import { shallow, render, mount } from 'enzyme'
 import DecoratedArticleList, { ArticleList } from './article-list'
 import articles from '../fixtures'
+import { sleep } from '../setupTests'
 
 describe('ArticleList', () => {
   it('should render ArticleList', () => {
@@ -31,7 +32,7 @@ describe('ArticleList', () => {
     expect(wrapper.find('.test__article_body').length).toEqual(1)
   })
 
-  it('article should closed', () => {
+  it('article should closed', (done) => {
     const wrapper = mount(<DecoratedArticleList articles={articles} />)
 
     wrapper
@@ -39,15 +40,20 @@ describe('ArticleList', () => {
       .first()
       .simulate('click')
 
-    expect(wrapper.state().openItemId).toEqual(articles[0].id)
+    expect(wrapper.find('.test__article_body').length).toEqual(1)
 
     wrapper
       .find('.test__article_btn')
       .first()
       .simulate('click')
 
-    expect(wrapper.state().openItemId).toEqual(null)
-    // but I do not find, how test it with DOM
+    setTimeout(() => {
+      wrapper.simulate('transitionEnd')
+
+      expect(wrapper.find('.test__article_body').length).toEqual(0)
+
+      done()
+    }, 1000)
   })
 
   it('should request data fetching', (done) => {
