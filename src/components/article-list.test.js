@@ -2,6 +2,7 @@ import React from 'react'
 import { shallow, render, mount } from 'enzyme'
 import DecoratedArticleList, { ArticleList } from './article-list'
 import articles from '../fixtures'
+import { sleep } from '../setupTests'
 
 describe('ArticleList', () => {
   it('should render ArticleList', () => {
@@ -39,5 +40,28 @@ describe('ArticleList', () => {
         fetchData={() => done()}
       />
     )
+  })
+
+  it('should be closed after click close button', async (done) => {
+    const wrapper = mount(<DecoratedArticleList articles={articles} />)
+
+    wrapper
+      .find('.test__article_btn')
+      .at(0)
+      .simulate('click')
+
+    expect(wrapper.find('.test__article_body').length).toEqual(1)
+
+    wrapper
+      .find('.test__article_btn')
+      .at(0)
+      .simulate('click')
+
+    await sleep(1000)
+    wrapper.simulate('transitionEnd')
+
+    expect(wrapper.find('.test__article_body').length).toEqual(0)
+
+    done()
   })
 })
