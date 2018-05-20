@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import Article from './article'
 import accordion from '../decorators/accordion'
+import PropTypes from 'prop-types'
 
 export class ArticleList extends Component {
+  static defaultProps = {
+    isOpen: PropTypes.bool.isRequired,
+    toggleOpen: PropTypes.func.isRequired,
+    articles: PropTypes.array.isRequired
+  }
+
   componentWillMount() {
     this.props.fetchData && this.props.fetchData()
   }
