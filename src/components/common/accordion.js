@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
 class Accordion extends Component {
-    state = {
-        openItemId: null
-    }
+  state = {
+    openItemId: null
+  }
 
-    toggleOpenItem = openItemId => () => this.setState({ openItemId })
+  toggleOpenItem = (openItemId) => () => this.setState({ openItemId })
 }
 
 export default Accordion
