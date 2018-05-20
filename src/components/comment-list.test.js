@@ -1,6 +1,6 @@
 import React from 'react'
-import { shallow, render, mount } from 'enzyme'
-import DecoratedCommentList, { CommentList } from './index'
+import { shallow, mount } from 'enzyme'
+import DecoratedCommentList, { CommentList } from './comment-list'
 import articles from '../fixtures'
 
 describe('CommentList', () => {
@@ -55,6 +55,8 @@ describe('CommentList', () => {
       // Second click should close comments
       .simulate('click')
 
-    expect(wrapper.find('.test__comment-item').length).toEqual(0)
+    setTimeout(() => {
+      expect(wrapper.find('.test__comment-item').length).toEqual(0)
+    }, 1)
   })
 })
