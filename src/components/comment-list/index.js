@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Comment from './comment'
-import toggleOpen from '../decorators/toggleOpen'
+import Comment from '../comment'
+import toggleOpen from '../../decorators/toggleOpen'
 
-class CommentList extends Component {
+export class CommentList extends Component {
   static propTypes = {
     comments: PropTypes.array,
     //from toggleOpen decorator
@@ -16,7 +16,9 @@ class CommentList extends Component {
     const text = isOpen ? 'hide comments' : 'show comments'
     return (
       <div>
-        <button onClick={toggleOpen}>{text}</button>
+        <button onClick={toggleOpen} className="test__comment-list_btn">
+          {text}
+        </button>
         {this.getBody()}
       </div>
     )
@@ -27,9 +29,9 @@ class CommentList extends Component {
     if (!isOpen) return null
 
     const body = comments.length ? (
-      <ul>
+      <ul className="test__comment-list_body">
         {comments.map((comment) => (
-          <li key={comment.id}>
+          <li key={comment.id} className="test__comment-list_item">
             <Comment comment={comment} />
           </li>
         ))}
