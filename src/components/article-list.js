@@ -6,8 +6,8 @@ import PropTypes from 'prop-types'
 export class ArticleList extends Component {
   static propTypes = {
     articles: PropTypes.array,
-    toggleOpenItem: PropTypes.string,
-    toggleOpen: PropTypes.func.isRequired
+    openItemId: PropTypes.string,
+    toggleOpenItem: PropTypes.func.isRequired
   }
 
   componentWillMount() {

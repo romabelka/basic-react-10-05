@@ -33,7 +33,7 @@ describe('CommentList', () => {
       const wrapper = mount(
         <DecoratedCommentList
           comments={article.comments}
-          isOpen
+          isOpen={false}
           toggleOpen={() => {}}
         />
       )
@@ -43,6 +43,7 @@ describe('CommentList', () => {
         .at(0)
         .simulate('click')
 
+      //  почему на результат теста не влияет isOpen?
       expect(wrapper.find('.test__comment-list_body').length).toEqual(1)
     })
   })
