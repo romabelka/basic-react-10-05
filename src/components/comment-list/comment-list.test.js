@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow, render, mount } from 'enzyme'
-import DecoratedCommentList, { CommentList } from './comment-list'
+import DecoratedCommentList, { CommentList } from './index'
 import articles from '../fixtures'
 
 describe('CommentList', () => {
