@@ -26,22 +26,25 @@ describe('CommentList', () => {
 
   it('should open comments', () => {
     const wrapper = mount(<ToggleOpen comments={articles[0].comments} />)
-    if (wrapper.find('.test__comment_btn_open')) {
-      wrapper
-        .find('.test__comment_btn_open')
-        .at(0)
-        .simulate('click')
+    wrapper.find('.test__comment_btn_open')
+    wrapper
+      .find('.test__comment_btn')
+      .at(0)
+      .simulate('click')
 
-      expect(wrapper.find('.test__comment_body').length).toEqual(
-        articles[0].comments.length
-      )
-    } else {
-      wrapper
-        .find('.test__comment_btn_close')
-        .at(0)
-        .simulate('click')
+    expect(wrapper.find('.test__comment_body').length).toEqual(
+      articles[0].comments.length
+    )
+  })
 
-      expect(wrapper.find('.test__comment_body').length).toEqual(0)
-    }
+  it('should close comments', () => {
+    const wrapper = mount(<ToggleOpen comments={articles[0].comments} />)
+    wrapper.find('.test__comment_btn_open')
+    wrapper
+      .find('.test__comment_btn')
+      .at(0)
+      .simulate('dblclick')
+
+    expect(wrapper.find('.test__comment_body').length).toEqual(0)
   })
 })

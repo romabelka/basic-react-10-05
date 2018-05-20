@@ -16,12 +16,9 @@ export class CommentList extends Component {
   render() {
     const { isOpen, toggleOpen } = this.props
     const text = isOpen ? 'hide comments' : 'show comments'
-    const className = isOpen
-      ? 'test__comment_btn_close'
-      : 'test__comment_btn_open'
     return (
       <div>
-        <button onClick={toggleOpen} className={className}>
+        <button onClick={toggleOpen} className="test__comment_btn">
           {text}
         </button>
         <CSSTransition
