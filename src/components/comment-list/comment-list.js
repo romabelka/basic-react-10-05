@@ -7,7 +7,13 @@ import './comment-list.css'
 
 export class CommentList extends Component {
   static propTypes = {
-    comments: PropTypes.array,
+    comments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+        user: PropTypes.string.isRequired
+      })
+    ),
     //from toggleOpen decorator
     isOpen: PropTypes.bool,
     toggleOpen: PropTypes.func.isRequired

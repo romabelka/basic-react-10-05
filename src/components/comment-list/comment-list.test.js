@@ -1,6 +1,8 @@
 import React from 'react'
 import { shallow, render, mount } from 'enzyme'
-import ToggleOpenComments, { CommentList } from '../comments/comment-list.js'
+import ToggleOpenComments, {
+  CommentList
+} from '../comment-list/comment-list.js'
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
