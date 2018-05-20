@@ -24,9 +24,9 @@ class Article extends PureComponent {
         if (!isOpen) return null
 
         return (
-            <section>
+            <article>
                 {article.text}
-            </section>
+            </article>
         )
     }
 
