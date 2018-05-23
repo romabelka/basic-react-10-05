@@ -1,30 +1,36 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
+import { connect } from 'react-redux'
+import { updateFilterIds } from '../../ac'
+
+function createOptionShapeByArticle(article) {
+  return {
+    label: article.title,
+    value: article.id
+  }
+}
 
 class SelectFilter extends Component {
   static propTypes = {
-    articles: PropTypes.array.isRequired
+    articles: PropTypes.array.isRequired,
+    selected: PropTypes.array.isRequired,
+    updateFilterIds: PropTypes.func
   }
 
-  state = {
-    selected: null
+  handleChange = (selected) => {
+    this.props.updateFilterIds(selected.map((select) => select.value))
   }
-
-  handleChange = (selected) => this.setState({ selected })
 
   get options() {
-    return this.props.articles.map((article) => ({
-      label: article.title,
-      value: article.id
-    }))
+    return this.props.articles.map(createOptionShapeByArticle)
   }
 
   render() {
     return (
       <Select
         options={this.options}
-        value={this.state.selected}
+        value={this.props.selected}
         onChange={this.handleChange}
         isMulti
       />
@@ -32,4 +38,18 @@ class SelectFilter extends Component {
   }
 }
 
-export default SelectFilter
+export default connect(
+  (state) => ({
+    articles: state.articles,
+    selected: state.articles.reduce((acc, article) => {
+      if (state.filters.ids.some((id) => article.id === id)) {
+        acc.push(createOptionShapeByArticle(article))
+      }
+
+      return acc
+    }, [])
+  }),
+  {
+    updateFilterIds
+  }
+)(SelectFilter)

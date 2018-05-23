@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ArticleList from './components/article-list'
+import FilteredArticleList from './containers/filtered-article-list'
 import UserForm from './components/user-form'
 import Filters from './components/filters'
 import Counter from './components/counter'
@@ -11,7 +11,7 @@ class App extends Component {
         <UserForm />
         <Counter />
         <Filters articles={[]} />
-        <ArticleList />
+        <FilteredArticleList />
       </div>
     )
   }
