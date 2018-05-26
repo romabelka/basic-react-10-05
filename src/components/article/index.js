@@ -72,4 +72,5 @@ class Article extends PureComponent {
   }
 }
 
+// 1 arg - mapStateToProps, 2 arg - mapDispatchToProps
 export default connect(null, { deleteArticle })(Article)
