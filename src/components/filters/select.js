@@ -2,20 +2,15 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
 import { connect } from 'react-redux'
-import { filterSelectedArticles } from '../../ac'
+import { setFilterArticles } from '../../ac'
 
 class SelectFilter extends Component {
   static propTypes = {
     articles: PropTypes.array.isRequired
   }
 
-  state = {
-    selected: null
-  }
-
   handleChange = (selected) => {
-    this.setState({ selected })
-    this.props.dispatch(filterSelectedArticles(selected))
+    this.props.setFilterArticles(selected)
   }
 
   get options() {
@@ -29,7 +24,7 @@ class SelectFilter extends Component {
     return (
       <Select
         options={this.options}
-        value={this.state.selected}
+        value={this.props.selected}
         onChange={this.handleChange}
         isMulti
       />
@@ -37,6 +32,10 @@ class SelectFilter extends Component {
   }
 }
 
-export default connect((state) => ({
-  articles: state.selectArticles
-}))(SelectFilter)
+export default connect(
+  (state) => ({
+    articles: state.articles,
+    selected: state.filter.selected
+  }),
+  { setFilterArticles }
+)(SelectFilter)
