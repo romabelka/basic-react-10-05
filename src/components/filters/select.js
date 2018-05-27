@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Select from 'react-select'
+import { connect } from 'react-redux'
+import { updateFilteredByTitleArticlesIds } from '../../ac'
 
 class SelectFilter extends Component {
   static propTypes = {
@@ -11,7 +13,13 @@ class SelectFilter extends Component {
     selected: null
   }
 
-  handleChange = (selected) => this.setState({ selected })
+  handleChange = (selected) => {
+    const selectedIds = selected.map((selectedArticle) => selectedArticle.value)
+    const filterIsApplied = selectedIds.length > 0
+    this.props.dispatch(
+      updateFilteredByTitleArticlesIds(selectedIds, filterIsApplied)
+    )
+  }
 
   get options() {
     return this.props.articles.map((article) => ({
@@ -21,10 +29,14 @@ class SelectFilter extends Component {
   }
 
   render() {
+    const selected = this.props.articles
+      .filter((article) => article.passesTitleFilter)
+      .map((article) => ({ label: article.title, value: article.id }))
+
     return (
       <Select
         options={this.options}
-        value={this.state.selected}
+        value={selected}
         onChange={this.handleChange}
         isMulti
       />
@@ -32,4 +44,4 @@ class SelectFilter extends Component {
   }
 }
 
-export default SelectFilter
+export default connect()(SelectFilter)
