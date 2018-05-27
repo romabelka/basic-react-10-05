@@ -5,8 +5,9 @@ import { connect } from 'react-redux'
 import CommentList from '../comment-list'
 import { deleteArticle } from '../../ac'
 import './article.css'
+import moment from 'moment'
 
-class Article extends PureComponent {
+export class Article extends PureComponent {
   static propTypes = {
     article: PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -33,7 +34,9 @@ class Article extends PureComponent {
     const { article, isOpen } = this.props
     return (
       <div>
-        <h2>{article.title}</h2>
+        <h2>
+          {moment(article.date).format('Do MMMM YYYY')}: {article.title}
+        </h2>
         <button onClick={this.toggleOpen} className="test__article_btn">
           {isOpen ? 'close' : 'open'}
         </button>

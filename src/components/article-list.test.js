@@ -1,7 +1,19 @@
 import React from 'react'
 import { shallow, render, mount } from 'enzyme'
-import DecoratedArticleList, { ArticleList } from './article-list'
+import accordion from '../decorators/accordion'
+import { ArticleList } from './article-list'
 import articles from '../fixtures'
+
+jest.mock('./article', () => ({ isOpen, toggleOpen, article: { id } }) => {
+  return (
+    <div className="test__article-list_item">
+      <div className="test__article_btn" onClick={() => toggleOpen(id)} />
+      {isOpen ? <div className="test__article_body" /> : null}
+    </div>
+  )
+})
+
+const DecoratedArticleList = accordion(ArticleList)
 
 describe('ArticleList', () => {
   it('should render ArticleList', () => {
@@ -13,7 +25,7 @@ describe('ArticleList', () => {
     )
   })
 
-  it('should contain all closed articles', () => {
+  it('should contain all closed items', () => {
     const wrapper = render(
       <ArticleList articles={articles} toggleOpenItem={() => {}} />
     )
