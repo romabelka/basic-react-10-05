@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import Article from './article'
 import accordion from '../decorators/accordion'
+import { selectedFilteredArticles } from '../selectors/selectors'
 
 export class ArticleList extends Component {
   static propTypes = {
@@ -32,6 +33,8 @@ export class ArticleList extends Component {
   }
 }
 
-export default connect((state) => ({
-  articles: state.articles
-}))(accordion(ArticleList))
+const mapStateToProps = (state) => ({
+  articles: selectedFilteredArticles(state)
+})
+
+export default connect(mapStateToProps)(accordion(ArticleList))
