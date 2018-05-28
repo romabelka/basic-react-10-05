@@ -30,6 +30,6 @@ export const createCommentSelector = () => {
   console.log('---', 'creating commentSelector')
   return createSelector(commentListSelector, idSelector, (comments, id) => {
     console.log('---', 'selecting a comment', id)
-    return comments.find((comment) => comment.id === id)
+    return comments[id]
   })
 }
