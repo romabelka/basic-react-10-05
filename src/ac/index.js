@@ -1,4 +1,9 @@
-import { INCREMENT, DELETE_ARTICLE } from '../constants'
+import {
+  INCREMENT,
+  DELETE_ARTICLE,
+  FILTER_ARTICLES_BY_COMMENTS_COUNT,
+  FILTER_ARTICLES_BY_DATE
+} from '../constants'
 
 export function increment() {
   return {
@@ -10,5 +15,19 @@ export function deleteArticle(id) {
   return {
     type: DELETE_ARTICLE,
     payload: { id }
+  }
+}
+
+export function filterArticlesByCommentsCount(countOptions) {
+  return {
+    type: FILTER_ARTICLES_BY_COMMENTS_COUNT,
+    payload: { countOptions }
+  }
+}
+
+export function filterArticlesByDate(range) {
+  return {
+    type: FILTER_ARTICLES_BY_DATE,
+    payload: range
   }
 }

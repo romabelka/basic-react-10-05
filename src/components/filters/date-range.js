@@ -9,8 +9,11 @@ class DateRange extends Component {
     to: null
   }
 
-  handleDayClick = (day) =>
-    this.setState(DateUtils.addDayToRange(day, this.state))
+  handleDayClick = (day) => {
+    const range = DateUtils.addDayToRange(day, this.state)
+    this.setState(range)
+    this.props.onChange(range)
+  }
 
   render() {
     const { from, to } = this.state
