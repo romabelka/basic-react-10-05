@@ -33,7 +33,13 @@ class Article extends PureComponent {
     const { article, isOpen } = this.props
     return (
       <div>
-        <h2>{article.title}</h2>
+        <h2>
+          {article.title} -{' '}
+          <small>
+            {article.comments ? article.comments.length : 'No'} comments
+          </small>
+        </h2>
+        <h6>{article.date}</h6>
         <button onClick={this.toggleOpen} className="test__article_btn">
           {isOpen ? 'close' : 'open'}
         </button>
