@@ -15,14 +15,19 @@ export const filtratedArticlesSelector = createSelector(
     } = filters
     console.log('---', 'calculating filters')
 
-    return articles.filter((article) => {
+    return Object.values(articles).reduce((acc, article) => {
       const published = Date.parse(article.date)
-      return (
+
+      if (
         (!selected.length ||
           selected.find((selected) => selected.value === article.id)) &&
         (!from || !to || (published > from && published < to))
-      )
-    })
+      ) {
+        acc[article.id] = article
+      }
+
+      return acc
+    }, {})
   }
 )
 
