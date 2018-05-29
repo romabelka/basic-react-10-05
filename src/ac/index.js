@@ -34,7 +34,6 @@ export function changeSelection(selected) {
 }
 
 export function addComment(holder, comment) {
-  console.log(holder)
   return {
     type: ADD_COMMENT,
     payload: { holder, comment }
