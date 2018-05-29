@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import CommentList from '../comment-list'
 import { deleteArticle } from '../../ac'
 import './article.css'
+import CommentHolder from '../../entities/CommentHolder'
 
 class Article extends PureComponent {
   static propTypes = {
@@ -17,6 +18,12 @@ class Article extends PureComponent {
     isOpen: PropTypes.bool,
     toggleOpen: PropTypes.func.isRequired,
     deleteArticle: PropTypes.func
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.commentHolder = new CommentHolder(props.article.id)
   }
 
   state = {
@@ -59,7 +66,10 @@ class Article extends PureComponent {
     return (
       <section className="test__article_body">
         {article.text}
-        <CommentList comments={article.comments} />
+        <CommentList
+          comments={article.comments}
+          commentHolder={this.commentHolder}
+        />
       </section>
     )
   }
