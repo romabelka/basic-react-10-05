@@ -20,11 +20,11 @@ export class ArticleList extends Component {
 
   render() {
     console.log('---', 'rerendering')
-    const articleElements = this.props.articles.map((article) => (
-      <li key={article.id} className="test__article-list_item">
+    const articleElements = this.props.articles.map((id) => (
+      <li key={id} className="test__article-list_item">
         <Article
-          article={article}
-          isOpen={article.id === this.props.openItemId}
+          id={id}
+          isOpen={id === this.props.openItemId}
           toggleOpen={this.props.toggleOpenItem}
         />
       </li>

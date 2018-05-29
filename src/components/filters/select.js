@@ -6,7 +6,7 @@ import { changeSelection } from '../../ac'
 
 class SelectFilter extends Component {
   static propTypes = {
-    articles: PropTypes.array.isRequired
+    articles: PropTypes.object.isRequired
   }
 
   handleChange = (selected) => {
@@ -14,10 +14,16 @@ class SelectFilter extends Component {
   }
 
   get options() {
-    return this.props.articles.map((article) => ({
-      label: article.title,
-      value: article.id
-    }))
+    return Object.keys(this.props.articles).reduce(
+      (acc, key) => [
+        ...acc,
+        {
+          label: this.props.articles[key].title,
+          value: key
+        }
+      ],
+      []
+    )
   }
 
   render() {
