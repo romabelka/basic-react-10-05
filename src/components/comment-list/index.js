@@ -41,12 +41,13 @@ class CommentList extends Component {
     if (!isOpen) return null
 
     return (
-      <div className="test__comment-list--body">
+      <div className="test__comment-list--body comment-list--body">
         {comments.length ? (
           this.getComments()
         ) : (
           <h3 className="test__comment-list--empty">No comments yet</h3>
         )}
+        {this.getCommentForm()}
       </div>
     )
   }
@@ -61,6 +62,22 @@ class CommentList extends Component {
         ))}
       </ul>
     )
+  }
+
+  getCommentForm() {
+    return (
+      <form>
+        <input type="text" placeholder="Username" />
+        <textarea placeholder="Comment text" />
+        <button onClick={this.addComment} type="button">
+          Add comment
+        </button>
+      </form>
+    )
+  }
+
+  addComment() {
+    console.log('add comment')
   }
 }
 
