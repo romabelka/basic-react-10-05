@@ -1,6 +1,7 @@
 import {
   INCREMENT,
   DELETE_ARTICLE,
+  ADD_COMMENT,
   CHANGE_DATE_RANGE,
   CHANGE_SELECTION
 } from '../constants'
@@ -29,5 +30,12 @@ export function changeSelection(selected) {
   return {
     type: CHANGE_SELECTION,
     payload: { selected }
+  }
+}
+
+export function addComment(comment) {
+  return {
+    type: ADD_COMMENT,
+    payload: { comment }
   }
 }
