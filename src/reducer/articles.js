@@ -1,4 +1,4 @@
-import { DELETE_ARTICLE } from '../constants'
+import { DELETE_ARTICLE, ADD_COMMENT } from '../constants'
 import { normalizedArticles } from '../fixtures'
 
 const defaultArticles = normalizedArticles.reduce(
@@ -23,6 +23,14 @@ export default (articleState = defaultArticles, action) => {
           }),
           {}
         )
+
+    case ADD_COMMENT:
+      const articles = { ...articleState }
+      const article = articles[payload.comment.articleId]
+      const comments = article.comments.concat([])
+      comments.push(payload.comment.id)
+      article.comments = comments
+      return articles
 
     default:
       return articleState

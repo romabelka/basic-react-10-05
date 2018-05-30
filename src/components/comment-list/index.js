@@ -12,6 +12,7 @@ class CommentList extends Component {
   }
 
   static propTypes = {
+    articleId: PropTypes.string.isRequired,
     comments: PropTypes.array.isRequired,
     //from toggleOpen decorator
     isOpen: PropTypes.bool,
@@ -48,7 +49,7 @@ class CommentList extends Component {
         ) : (
           <h3 className="test__comment-list--empty">No comments yet</h3>
         )}
-        <CommentForm />
+        <CommentForm articleId={this.props.articleId} />
       </div>
     )
   }
