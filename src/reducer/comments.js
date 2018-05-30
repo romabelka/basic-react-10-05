@@ -10,9 +10,13 @@ const defaultComments = normalizedComments.reduce(
 )
 
 export default (commentsState = defaultComments, action) => {
-  const { type } = action
+  const { type, payload } = action
 
   switch (type) {
+    case 'SUBMIT_COMMENT':
+      const comment = { [payload.comment.id]: payload.comment }
+      return { ...commentsState, ...comment }
+
     default:
       return commentsState
   }
