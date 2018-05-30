@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import filter from 'lodash/filter'
 
 const idSelector = (_, props) => props.id
 const articlesSelector = (state) => state.articles
@@ -15,7 +16,7 @@ export const filtratedArticlesSelector = createSelector(
     } = filters
     console.log('---', 'calculating filters')
 
-    return articles.filter((article) => {
+    return filter(articles, (article) => {
       const published = Date.parse(article.date)
       return (
         (!selected.length ||
