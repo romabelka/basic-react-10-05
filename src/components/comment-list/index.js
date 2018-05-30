@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSTransition from 'react-addons-css-transition-group'
 import Comment from '../comment'
+import CommentForm from '../comment-form'
 import toggleOpen from '../../decorators/toggleOpen'
+import { addComment } from '../../ac'
+import { connect } from 'react-redux'
 import './style.css'
 
 class CommentList extends Component {
@@ -11,6 +14,7 @@ class CommentList extends Component {
   }
 
   static propTypes = {
+    articleId: PropTypes.string.isRequired,
     comments: PropTypes.array.isRequired,
     //from toggleOpen decorator
     isOpen: PropTypes.bool,
@@ -41,12 +45,13 @@ class CommentList extends Component {
     if (!isOpen) return null
 
     return (
-      <div className="test__comment-list--body">
+      <div className="test__comment-list--body comment-list--body">
         {comments.length ? (
           this.getComments()
         ) : (
           <h3 className="test__comment-list--empty">No comments yet</h3>
         )}
+        <CommentForm articleId={this.props.articleId} />
       </div>
     )
   }
@@ -64,4 +69,9 @@ class CommentList extends Component {
   }
 }
 
-export default toggleOpen(CommentList)
+export default connect(
+  (state, ownProps) => ({
+    comments: state.articles[ownProps.articleId].comments
+  }),
+  { addComment }
+)(toggleOpen(CommentList))
