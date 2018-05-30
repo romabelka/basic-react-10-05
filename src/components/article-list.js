@@ -19,8 +19,6 @@ export class ArticleList extends Component {
   }
 
   render() {
-    console.log(this.props.articles)
-    console.log('---', 'rerendering')
     const articleElements = Object.values(this.props.articles).map(
       (article) => (
         <li key={article.id} className="test__article-list_item">
@@ -38,7 +36,6 @@ export class ArticleList extends Component {
 }
 
 export default connect((state) => {
-  console.log('---', 'connect')
   return {
     articles: filtratedArticlesSelector(state)
   }
