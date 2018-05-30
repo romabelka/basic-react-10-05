@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import CommentList from '../comment-list'
 import { deleteArticle } from '../../ac'
 import './article.css'
+import { createArticleSelector } from '../../selectors'
 
 class Article extends PureComponent {
   static propTypes = {
@@ -31,6 +32,7 @@ class Article extends PureComponent {
 
   render() {
     const { article, isOpen } = this.props
+
     return (
       <div>
         <h2>{article.title}</h2>
@@ -55,11 +57,10 @@ class Article extends PureComponent {
     const { article, isOpen } = this.props
     if (!isOpen) return null
     if (this.state.hasError) return <h3>Some Error</h3>
-
     return (
       <section className="test__article_body">
         {article.text}
-        <CommentList comments={article.comments} />
+        <CommentList comments={article.comments} parent={article.id} />
       </section>
     )
   }
@@ -72,4 +73,12 @@ class Article extends PureComponent {
   }
 }
 
-export default connect(null, { deleteArticle })(Article)
+const createMapStateToProps = () => {
+  const articleSelector = createArticleSelector()
+
+  return (state, ownProps) => ({
+    article: articleSelector(state, ownProps)
+  })
+}
+
+export default connect(createMapStateToProps, { deleteArticle })(Article)

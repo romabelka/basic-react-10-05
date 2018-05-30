@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import CSSTransition from 'react-addons-css-transition-group'
 import Comment from '../comment'
+import Form from '../form'
 import toggleOpen from '../../decorators/toggleOpen'
 import './style.css'
 
@@ -12,9 +13,14 @@ class CommentList extends Component {
 
   static propTypes = {
     comments: PropTypes.array.isRequired,
+    parent: PropTypes.string.isRequired,
     //from toggleOpen decorator
     isOpen: PropTypes.bool,
     toggleOpen: PropTypes.func
+  }
+
+  componentWillUpdate() {
+    console.log('update')
   }
 
   render() {
@@ -47,6 +53,7 @@ class CommentList extends Component {
         ) : (
           <h3 className="test__comment-list--empty">No comments yet</h3>
         )}
+        <Form parent={this.props.parent} />
       </div>
     )
   }
