@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import Select from 'react-select'
 import { connect } from 'react-redux'
 import { changeSelection } from '../../ac'
+import map from 'lodash/map'
 
 class SelectFilter extends Component {
   static propTypes = {
-    articles: PropTypes.array.isRequired
+    articles: PropTypes.object.isRequired
   }
 
   handleChange = (selected) => {
@@ -14,7 +15,9 @@ class SelectFilter extends Component {
   }
 
   get options() {
-    return this.props.articles.map((article) => ({
+    const { articles } = this.props
+
+    return map(articles, (article) => ({
       label: article.title,
       value: article.id
     }))

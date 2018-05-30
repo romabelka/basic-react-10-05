@@ -16,7 +16,8 @@ class Article extends PureComponent {
     }).isRequired,
     isOpen: PropTypes.bool,
     toggleOpen: PropTypes.func.isRequired,
-    deleteArticle: PropTypes.func
+    deleteArticle: PropTypes.func,
+    addComment: PropTypes.func
   }
 
   state = {
@@ -59,7 +60,7 @@ class Article extends PureComponent {
     return (
       <section className="test__article_body">
         {article.text}
-        <CommentList comments={article.comments} />
+        <CommentList comments={article.comments} articleId={article.id} />
       </section>
     )
   }
