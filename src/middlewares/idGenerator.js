@@ -1,7 +1,6 @@
-export default () => {
-  function random() {
-    return pad(3, Math.round(0.5 + Math.random() * 999))
-  }
+import { ADD_COMMENT } from '../constants'
+
+function generateId() {
   function pad(length, number) {
     const string = number.toString()
     return string.length >= length
@@ -9,5 +8,17 @@ export default () => {
       : new Array(length - string.length + 1).join('0') + number
   }
 
-  return `${Date.now()}${random()}`
+  return `${Date.now()}${pad(3, Math.round(0.5 + Math.random() * 999))}`
+}
+
+export default (store) => (next) => (action) => {
+  const { type, payload } = action
+
+  if (type === ADD_COMMENT)
+    payload.comment = {
+      ...payload.comment,
+      id: generateId()
+    }
+
+  next(action)
 }
