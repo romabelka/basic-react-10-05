@@ -4,8 +4,8 @@ import { addComment } from '../ac'
 
 class CommentForm extends Component {
   state = {
-    user: undefined,
-    text: undefined
+    user: '',
+    text: ''
   }
   render() {
     return (
@@ -14,9 +14,14 @@ class CommentForm extends Component {
           type="text"
           placeholder="Username"
           onChange={this.handleUsername}
+          value={this.state.user}
         />
 
-        <textarea placeholder="Comment text" onChange={this.handleComment} />
+        <textarea
+          placeholder="Comment text"
+          onChange={this.handleComment}
+          value={this.state.text}
+        />
 
         <button type="button" onClick={this.addComment}>
           Add comment
@@ -26,10 +31,7 @@ class CommentForm extends Component {
   }
 
   addComment = () => {
-    this.setState({
-      user: '',
-      text: ''
-    })
+    this.setState({ user: '', text: '' })
     this.props.addComment({ articleId: this.props.articleId, ...this.state })
   }
 
