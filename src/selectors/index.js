@@ -2,12 +2,14 @@ import { createSelector } from 'reselect'
 
 const idSelector = (_, props) => props.id
 
-export const articlesMapSelector = (state) => state.articles
+export const articlesMapSelector = (state) => state.articles.entities
 
 export const articleListSelector = createSelector(
   articlesMapSelector,
   (articlesMap) => articlesMap.valueSeq().toArray()
 )
+
+export const loadingArticlesSelector = (state) => state.articles.loading
 
 const filtersSelector = (state) => state.filters
 const commentListSelector = (state) => state.comments

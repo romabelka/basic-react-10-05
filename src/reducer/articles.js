@@ -1,5 +1,11 @@
 import { Record } from 'immutable'
-import { DELETE_ARTICLE, ADD_COMMENT, LOAD_ALL_ARTICLES } from '../constants'
+import {
+  DELETE_ARTICLE,
+  ADD_COMMENT,
+  LOAD_ALL_ARTICLES,
+  START,
+  SUCCESS
+} from '../constants'
 import { arrToMap } from './utils'
 
 const ArticleModel = new Record({
@@ -10,22 +16,36 @@ const ArticleModel = new Record({
   comments: []
 })
 
-export default (articles = arrToMap([], ArticleModel), action) => {
+const ReducerRecord = new Record({
+  entities: arrToMap([], ArticleModel),
+  loading: false,
+  loaded: false,
+  error: null
+})
+
+export default (state = new ReducerRecord(), action) => {
   const { type, payload, randomId, response } = action
 
   switch (type) {
     case DELETE_ARTICLE:
-      return articles.delete(payload.id)
+      return state.deleteIn(['entities', payload.id])
 
     case ADD_COMMENT:
-      return articles.updateIn([payload.articleId, 'comments'], (comments) =>
-        comments.concat(randomId)
+      return state.updateIn(
+        ['entities', payload.articleId, 'comments'],
+        (comments) => comments.concat(randomId)
       )
 
-    case LOAD_ALL_ARTICLES:
-      return arrToMap(response, ArticleModel)
+    case LOAD_ALL_ARTICLES + START:
+      return state.set('loading', true)
+
+    case LOAD_ALL_ARTICLES + SUCCESS:
+      return state
+        .set('entities', arrToMap(response, ArticleModel))
+        .set('loading', false)
+        .set('loaded', true)
 
     default:
-      return articles
+      return state
   }
 }
