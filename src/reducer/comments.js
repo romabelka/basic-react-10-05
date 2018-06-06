@@ -1,6 +1,11 @@
 import { Record } from 'immutable'
-import { ADD_COMMENT, LOAD_ALL_COMMENTS, START } from '../constants'
-import { normalizedComments } from '../fixtures'
+import {
+  ADD_COMMENT,
+  LOAD_ARTICLE_COMMENTS,
+  START,
+  SUCCESS,
+  FAIL
+} from '../constants'
 import { arrToMap } from './utils'
 
 const CommentModel = new Record({
@@ -9,7 +14,7 @@ const CommentModel = new Record({
   text: null
 })
 const CommentsReducerRecord = new Record({
-  entities: arrToMap(normalizedComments, CommentModel),
+  entities: arrToMap([], CommentModel),
   loading: false,
   loaded: false,
   error: null
@@ -28,8 +33,20 @@ export default (state = new CommentsReducerRecord(), action) => {
         })
       )
 
-    case LOAD_ALL_COMMENTS + START:
+    case LOAD_ARTICLE_COMMENTS + START:
       return state.set('loading', true)
+
+    case LOAD_ARTICLE_COMMENTS + SUCCESS:
+      return state
+        .set('entities', arrToMap(response, CommentModel))
+        .set('loading', false)
+        .set('loaded', true)
+
+    case LOAD_ARTICLE_COMMENTS + FAIL:
+      return state
+        .set('entities', arrToMap(response, CommentModel))
+        .set('loading', false)
+        .set('loaded', true)
 
     default:
       return state

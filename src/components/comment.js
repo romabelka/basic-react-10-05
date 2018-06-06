@@ -1,27 +1,28 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { createCommentSelector } from '../selectors'
+import { createCommentSelector, commentsLoadedSelector } from '../selectors'
 
-function Comment({ comment }) {
-  return (
-    <div>
-      {comment.text} <b>by {comment.user}</b>
-    </div>
-  )
-}
+class Comment extends Component {
+  static propTypes = {
+    id: PropTypes.string.isRequired
+  }
 
-Comment.propTypes = {
-  comment: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    user: PropTypes.string
-  }).isRequired
+  render() {
+    const { user, text } = this.props
+    return (
+      <div>
+        {text} <b>by {user}</b>
+      </div>
+    )
+  }
 }
 
 const createMapStateToProps = () => {
   const commentSelector = createCommentSelector()
 
   return (state, ownProps) => ({
+    comments: commentsLoadedSelector()(state, ownProps),
     comment: commentSelector(state, ownProps)
   })
 }
