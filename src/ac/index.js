@@ -5,6 +5,7 @@ import {
   CHANGE_SELECTION,
   ADD_COMMENT,
   LOAD_ALL_ARTICLES,
+  LOAD_ARTICLE_COMMENTS,
   LOAD_ARTICLE,
   SUCCESS,
   FAIL,
@@ -63,6 +64,31 @@ export function loadArticle(id) {
   }
 }
 */
+
+export function loadAllComments(id) {
+  return (dispatch) => {
+    dispatch({
+      type: LOAD_ARTICLE_COMMENTS + START,
+      payload: { id }
+    })
+
+    fetchData(`/comment?article=${id}`)
+      .then((response) =>
+        dispatch({
+          type: LOAD_ARTICLE_COMMENTS + SUCCESS,
+          payload: { id },
+          response
+        })
+      )
+      .catch((error) =>
+        dispatch({
+          type: LOAD_ARTICLE_COMMENTS + FAIL,
+          payload: { id },
+          error
+        })
+      )
+  }
+}
 
 export function loadArticle(id) {
   return (dispatch) => {
