@@ -8,7 +8,8 @@ import {
   LOAD_ARTICLE,
   SUCCESS,
   FAIL,
-  START
+  START,
+  LOAD_COMMENTS
 } from '../constants'
 import { fetchData } from './service'
 
@@ -83,6 +84,31 @@ export function loadArticle(id) {
         dispatch({
           type: LOAD_ARTICLE + FAIL,
           payload: { id },
+          error
+        })
+      )
+  }
+}
+
+export function loadComments(articleId) {
+  return (dispatch) => {
+    dispatch({
+      type: LOAD_COMMENTS + START,
+      payload: { articleId }
+    })
+
+    fetchData(`comment?article=${articleId}`)
+      .then((response) =>
+        dispatch({
+          type: LOAD_COMMENTS + SUCCESS,
+          payload: { articleId },
+          response
+        })
+      )
+      .catch((error) =>
+        dispatch({
+          type: LOAD_COMMENTS + FAIL,
+          payload: { articleId },
           error
         })
       )
