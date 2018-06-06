@@ -5,6 +5,7 @@ import {
   CHANGE_SELECTION,
   ADD_COMMENT,
   LOAD_ALL_ARTICLES,
+  LOAD_ALL_COMMENTS,
   LOAD_ARTICLE,
   SUCCESS,
   FAIL,
@@ -53,6 +54,15 @@ export function loadAllArticles() {
     callAPI: '/api/article'
   }
 }
+/*
+export function loadAllComments(id) {
+  console.log('=====', id);
+  return {
+    type: LOAD_ALL_COMMENTS,
+    payload: { id },
+    callAPI: `/api/comment?article=${id}`
+  }
+}*/
 
 /*
 export function loadArticle(id) {
@@ -63,6 +73,32 @@ export function loadArticle(id) {
   }
 }
 */
+
+export function loadAllComments(id) {
+  console.log('=====', id)
+  return (dispatch) => {
+    dispatch({
+      type: LOAD_ALL_COMMENTS + START,
+      payload: { id }
+    })
+
+    fetchData(`/api/comment?article=${id}`)
+      .then((response) =>
+        dispatch({
+          type: LOAD_ALL_COMMENTS + SUCCESS,
+          payload: { id },
+          response
+        })
+      )
+      .catch((error) =>
+        dispatch({
+          type: LOAD_ALL_COMMENTS + FAIL,
+          payload: { id },
+          error
+        })
+      )
+  }
+}
 
 export function loadArticle(id) {
   return (dispatch) => {

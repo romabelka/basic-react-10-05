@@ -10,9 +10,10 @@ export const articleListSelector = createSelector(
 )
 
 export const loadingArticlesSelector = (state) => state.articles.loading
+export const loadingCommentsSelector = (state) => state.comments.loading
 
 const filtersSelector = (state) => state.filters
-const commentListSelector = (state) => state.comments
+export const commentListSelector = (state) => state.comments
 export const filtersSelectionSelector = createSelector(
   filtersSelector,
   (filters) => filters.selected

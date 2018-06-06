@@ -1,5 +1,5 @@
 import { Record } from 'immutable'
-import { ADD_COMMENT } from '../constants'
+import { ADD_COMMENT, LOAD_ALL_COMMENTS, START } from '../constants'
 import { normalizedComments } from '../fixtures'
 import { arrToMap } from './utils'
 
@@ -16,7 +16,7 @@ const CommentsReducerRecord = new Record({
 })
 
 export default (state = new CommentsReducerRecord(), action) => {
-  const { type, payload, randomId } = action
+  const { type, payload, randomId, response } = action
 
   switch (type) {
     case ADD_COMMENT:
@@ -27,6 +27,9 @@ export default (state = new CommentsReducerRecord(), action) => {
           id: randomId
         })
       )
+
+    case LOAD_ALL_COMMENTS + START:
+      return state.set('loading', true)
 
     default:
       return state
