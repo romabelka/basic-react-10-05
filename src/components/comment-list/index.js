@@ -5,13 +5,36 @@ import Comment from '../comment'
 import CommentForm from '../comment-form'
 import toggleOpen from '../../decorators/toggleOpen'
 import './style.css'
+import { loadComments } from '../../ac'
+import {
+  loadingCommentsSelector,
+  isCommentsLoadedSelector
+} from '../../selectors'
+import { connect } from 'react-redux'
+import Loader from '../common/loader'
 
 class CommentList extends Component {
   static propTypes = {
     article: PropTypes.object.isRequired,
     //from toggleOpen decorator
     isOpen: PropTypes.bool,
-    toggleOpen: PropTypes.func
+    toggleOpen: PropTypes.func,
+    loadComments: PropTypes.func,
+    isCommentsLoaded: PropTypes.bool,
+    loading: PropTypes.bool
+  }
+
+  componentDidUpdate(oldProps) {
+    const {
+      isOpen,
+      isCommentsLoaded,
+      article,
+      loadComments,
+      loading
+    } = this.props
+
+    if (!oldProps.isOpen && isOpen && !loading && !isCommentsLoaded)
+      loadComments(article.id)
   }
 
   render() {
@@ -36,13 +59,16 @@ class CommentList extends Component {
   getBody() {
     const {
       article: { comments = [], id },
-      isOpen
+      isOpen,
+      loading,
+      isCommentsLoaded
     } = this.props
     if (!isOpen) return null
+    if (loading) return <Loader />
 
     return (
       <div className="test__comment-list--body">
-        {comments.length ? (
+        {comments.length && isCommentsLoaded ? (
           this.getComments()
         ) : (
           <h3 className="test__comment-list--empty">No comments yet</h3>
@@ -65,4 +91,15 @@ class CommentList extends Component {
   }
 }
 
-export default toggleOpen(CommentList)
+const createMapStateToProps = () => {
+  const isCommentsLoaded = isCommentsLoadedSelector()
+
+  return (state, ownProps) => ({
+    loading: loadingCommentsSelector(state),
+    isCommentsLoaded: isCommentsLoaded(state, ownProps)
+  })
+}
+
+export default toggleOpen(
+  connect(createMapStateToProps, { loadComments })(CommentList)
+)
