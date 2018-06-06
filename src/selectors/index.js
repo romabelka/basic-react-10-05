@@ -40,6 +40,6 @@ export const filtratedArticlesSelector = createSelector(
 
 export const createCommentSelector = () => {
   return createSelector(commentListSelector, idSelector, (comments, id) => {
-    return comments.get(id)
+    return comments.getIn(['entities', id])
   })
 }
