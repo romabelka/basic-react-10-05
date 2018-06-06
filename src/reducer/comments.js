@@ -43,10 +43,7 @@ export default (state = new CommentsReducerRecord(), action) => {
         .set('loaded', true)
 
     case LOAD_ARTICLE_COMMENTS + FAIL:
-      return state
-        .set('entities', arrToMap(response, CommentModel))
-        .set('loading', false)
-        .set('loaded', true)
+      return state.set('loading', false).set('error', action.error)
 
     default:
       return state
