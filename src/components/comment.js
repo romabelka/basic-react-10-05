@@ -6,7 +6,7 @@ import { createCommentSelector } from '../selectors'
 function Comment({ comment }) {
   return (
     <div>
-      {comment.get('text')} <b>by {comment.get('user')}</b>
+      {comment.text} <b>by {comment.user}</b>
     </div>
   )
 }
