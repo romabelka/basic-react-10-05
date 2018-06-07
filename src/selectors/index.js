@@ -3,6 +3,11 @@ import { createSelector } from 'reselect'
 const idSelector = (_, props) => props.id
 
 export const articlesMapSelector = (state) => state.articles.entities
+export const articleSelector = createSelector(
+  articlesMapSelector,
+  idSelector,
+  (articles, id) => articles.get(id)
+)
 
 export const articleListSelector = createSelector(
   articlesMapSelector,
