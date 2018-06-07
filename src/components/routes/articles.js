@@ -7,16 +7,23 @@ class ArticlesPage extends Component {
   static propTypes = {}
 
   render() {
+    console.log('--- articles page match', this.props.match)
+
     return (
       <div>
         <ArticleList />
-        <Route path="/articles/:id" render={this.getArticle} />
+        <Route path="/articles/:id" children={this.getArticle} />
       </div>
     )
   }
 
   getArticle = ({ match }) => {
-    return <Article id={match.params.id} isOpen />
+    console.log('---', 'article match', match)
+    return match ? (
+      <Article id={match.params.id} isOpen />
+    ) : (
+      <h1>Please select an article</h1>
+    )
   }
 }
 
