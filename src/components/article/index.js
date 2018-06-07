@@ -13,8 +13,8 @@ class Article extends PureComponent {
     id: PropTypes.string,
 
     article: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      title: PropTypes.string.isRequired,
+      id: PropTypes.string,
+      title: PropTypes.string,
       text: PropTypes.string,
       comments: PropTypes.array
     }),
@@ -33,7 +33,8 @@ class Article extends PureComponent {
     })
   }
 
-  componentDidUpdate() {
+  constructor(props) {
+    super(props)
     const { loadArticle, article, id } = this.props
     if (!article || (!article.text && !article.loading)) loadArticle(id)
   }
