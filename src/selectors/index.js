@@ -49,12 +49,13 @@ export const commentsLoadedSelector = () => {
   return createSelector(
     commentListSelector,
     commentIdSelector,
-    (comments, ids) =>
-      ids.every((id) => comments.find((comment) => comment.id === id))
+    (comments, ids) => comments.filter((c) => ~ids.indexOf(c.get('id')))
   )
 }
 export const createCommentSelector = () => {
-  return createSelector(commentListSelector, idSelector, (comments, id) => {
-    return comments.getIn(['entities', id])
-  })
+  return createSelector(
+    commentListSelector,
+    idSelector,
+    (comments, id) => comments.filter((c) => c.get('id') === id)[0]
+  )
 }

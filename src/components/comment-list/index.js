@@ -28,10 +28,9 @@ class CommentList extends Component {
       loadAllComments,
       article,
       loading,
-      loaded,
       commentsLoaded
     } = this.props
-    if (!oldProps.isOpen && isOpen && !commentsLoaded && !loading)
+    if (!oldProps.isOpen && isOpen && !commentsLoaded.length && !loading)
       loadAllComments(article.id)
   }
 
@@ -66,7 +65,7 @@ class CommentList extends Component {
 
     return (
       <div className="test__comment-list--body">
-        {comments.length && commentsLoaded ? (
+        {comments.length && commentsLoaded && commentsLoaded.length ? (
           this.getComments()
         ) : (
           <h3 className="test__comment-list--empty">No comments yet</h3>
@@ -95,12 +94,13 @@ const createMapToProps = () => {
   const commentsLoaded = commentsLoadedSelector()
 
   return (state, ownProps) => ({
-    comments: commentsLoaded(state, ownProps),
+    commentsLoaded: commentsLoaded(state, ownProps),
     loading: loadingCommentListSelector(state),
     loaded: loadedCommentListSelector(state)
   })
 }
 
-export default connect(createMapToProps, { loadAllComments })(
-  toggleOpen(CommentList)
-)
+export default connect(
+  createMapToProps,
+  { loadAllComments }
+)(toggleOpen(CommentList))
