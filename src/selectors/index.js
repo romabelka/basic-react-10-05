@@ -27,6 +27,11 @@ export const articleListSelector = createSelector(
 )
 
 export const loadingArticlesSelector = (state) => state.articles.loading
+export const loadingCommentsPageSelector = createSelector(
+  commentsPageMapSelector,
+  pageSelector,
+  (pages, page) => pages.getIn([page, 'loading'])
+)
 
 const filtersSelector = (state) => state.filters
 const commentMapSelector = (state) => state.comments.entities

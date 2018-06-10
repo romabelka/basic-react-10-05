@@ -3,7 +3,11 @@ import Loader from '../components/common/loader'
 import Comment from '../components/comment'
 import { connect } from 'react-redux'
 import { loadCommentsPage } from '../ac'
-import { pageSelector, commentsPageSelector } from '../selectors'
+import {
+  pageSelector,
+  commentsPageSelector,
+  loadingCommentsPageSelector
+} from '../selectors'
 
 class CommentsPage extends Component {
   constructor(props) {
@@ -16,9 +20,9 @@ class CommentsPage extends Component {
   }
 
   getComments() {
-    const { page, comments } = this.props
-    if (!page || !comments || !comments.length) return null
-    if (page.loading) return <Loader />
+    const { page, comments, loading } = this.props
+    if (!page) return null
+    if (loading) return <Loader />
 
     return (
       <ul>
@@ -34,6 +38,7 @@ class CommentsPage extends Component {
 
 export default connect(
   (state, ownProps) => ({
+    loading: loadingCommentsPageSelector(state, ownProps),
     comments: commentsPageSelector(state, ownProps),
     page: pageSelector(state, ownProps)
   }),
