@@ -3,27 +3,26 @@ import Loader from '../components/common/loader'
 import Comment from '../components/comment'
 import { connect } from 'react-redux'
 import { loadCommentsPage } from '../ac'
-import { commentsPageSelector } from '../selectors'
+import { pageSelector, commentsPageSelector } from '../selectors'
 
 class CommentsPage extends Component {
   constructor(props) {
     super(props)
-    const { page, loadCommentsPage } = this.props
-    console.log('component props', this.props)
-    if (!page || (!page.loaded && !page.loading)) loadCommentsPage(page)
+    const { page, comments, loadCommentsPage } = this.props
+    if (!comments || (!page.loaded && !page.loading)) loadCommentsPage(page)
   }
   render() {
     return <div>{this.getComments()}</div>
   }
 
   getComments() {
-    const { page } = this.props
-    if (!page || !page.comments || !page.comments.length) return null
+    const { page, comments } = this.props
+    if (!page || !comments || !comments.length) return null
     if (page.loading) return <Loader />
 
     return (
       <ul>
-        {page.comments.map((id) => (
+        {comments.map((id) => (
           <li key={id}>
             <Comment id={id} />
           </li>
@@ -34,11 +33,9 @@ class CommentsPage extends Component {
 }
 
 export default connect(
-  (state, ownProps) => {
-    console.log('=== ownProps', ownProps)
-    return {
-      page: commentsPageSelector(state, ownProps)
-    }
-  },
+  (state, ownProps) => ({
+    comments: commentsPageSelector(state, ownProps),
+    page: pageSelector(state, ownProps)
+  }),
   { loadCommentsPage }
 )(CommentsPage)

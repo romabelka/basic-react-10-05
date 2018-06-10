@@ -46,6 +46,7 @@ export default (state = new ReducerRecord(), action) => {
       return state.setIn(
         ['pages', payload.page],
         new CommentsPageRecord({
+          page: payload.page,
           loading: true
         })
       )
@@ -59,15 +60,17 @@ export default (state = new ReducerRecord(), action) => {
       )
 
     case LOAD_COMMENTS_PAGE + SUCCESS:
-      const { comments } = payload
-      return state.mergeIn('entities', arrToMap(comments, CommentRecord)).setIn(
-        ['pages', payload.page],
-        new CommentsPageRecord({
-          loading: false,
-          loaded: true,
-          comments: Object.keys(comments)
-        })
-      )
+      const { records } = response
+      return state
+        .mergeIn(['entities'], arrToMap(records, CommentRecord))
+        .setIn(
+          ['pages', payload.page],
+          new CommentsPageRecord({
+            loading: false,
+            loaded: true,
+            comments: records.map((record) => record.id)
+          })
+        )
 
     default:
       return state

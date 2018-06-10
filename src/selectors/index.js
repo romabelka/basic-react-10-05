@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 
 const idSelector = (_, props) => props.id
-const pageSelector = (_, props) => props.page
+export const pageSelector = (_, props) => props.page
 
 export const commentsPageMapSelector = (state) => state.comments.pages
 export const articlesMapSelector = (state) => state.articles.entities
@@ -14,7 +14,10 @@ export const commentsPageSelector = createSelector(
   commentsPageMapSelector,
   pageSelector,
   (pages, page) => {
-    return pages.get(page)
+    const selectedPage = pages.get(page)
+    return selectedPage && selectedPage.comments && selectedPage.comments.length
+      ? selectedPage.comments
+      : []
   }
 )
 
