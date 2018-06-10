@@ -11,10 +11,6 @@ import {
 } from '../selectors'
 import Pagination from './pagination'
 
-const calculateOffset = (page, perPage) => {
-  return page * perPage - perPage
-}
-
 const PER_PAGE = 5
 const COMMENTS_ROUTE = '/comments/:page'
 
@@ -31,9 +27,7 @@ class CommentsPage extends Component {
     const { page, loadPageComments, pager, comments } = props
 
     if (!pager || comments.length < PER_PAGE) {
-      const offset = calculateOffset(page, PER_PAGE)
-
-      loadPageComments(PER_PAGE, offset, page)
+      loadPageComments(page, PER_PAGE)
     }
   }
 

@@ -13,6 +13,7 @@ import {
   LOAD_PAGE_COMMENTS
 } from '../constants'
 import { fetchData } from './service'
+import { calculateOffset } from './utils'
 
 export function increment() {
   return {
@@ -99,7 +100,8 @@ export function loadArticleComments(articleId) {
   }
 }
 
-export function loadPageComments(perPage, offset, page) {
+export function loadPageComments(page, perPage) {
+  const offset = calculateOffset(page, perPage)
   return {
     type: LOAD_PAGE_COMMENTS,
     payload: { page },

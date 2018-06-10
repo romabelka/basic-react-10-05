@@ -8,7 +8,7 @@ class CommentsRoute extends Component {
   render() {
     return (
       <div>
-        <Route path="/comments/:page" children={this.getCommentsPage} />
+        <Route path="/comments/:page?" children={this.getCommentsPage} />
       </div>
     )
   }
@@ -19,6 +19,7 @@ class CommentsRoute extends Component {
     }
 
     const page = Number(match.params.page)
+
     const normalizedPage = isNaN(page) && page < FIRST_PAGE ? FIRST_PAGE : page
 
     return <CommentsPage page={normalizedPage} key={normalizedPage} />
