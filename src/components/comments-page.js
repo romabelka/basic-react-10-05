@@ -15,7 +15,7 @@ class CommentsPage extends Component {
   constructor(props) {
     super(props)
     const { page, comments, loadCommentsPage } = this.props
-    if (!comments || (!page.loaded && !page.loading)) loadCommentsPage(page)
+    if (!comments.length) loadCommentsPage(page)
   }
   render() {
     return <div>{this.getComments()}</div>
