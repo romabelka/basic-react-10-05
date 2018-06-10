@@ -49,3 +49,18 @@ export const createCommentSelector = () => {
     return comments.get(id)
   })
 }
+
+export const pagesMapSelector = (state) => state.pager.entities
+export const pageIdSelector = (_, props) => props.page
+
+export const pageSelector = createSelector(
+  pagesMapSelector,
+  pageIdSelector,
+  (pages, page) => pages.get(page)
+)
+
+export const totalCountSelector = (state) => state.pager.total
+
+export const commentsByPageSelector = createSelector(pageSelector, (page) => {
+  return page && page.comments.size ? page.comments.toArray() : []
+})

@@ -4,6 +4,7 @@ import ArticleRoute from './components/routes/articles'
 import UserForm from './components/user-form'
 import Filters from './components/filters'
 import Counter from './components/counter'
+import Comments from './components/routes/comments'
 
 class App extends Component {
   render() {
@@ -25,6 +26,11 @@ class App extends Component {
               Articles
             </NavLink>
           </div>
+          <div>
+            <NavLink to="/comments" activeStyle={{ color: 'red' }}>
+              Comments
+            </NavLink>
+          </div>
         </div>
         <UserForm />
         <Switch>
@@ -32,6 +38,7 @@ class App extends Component {
           <Route path="/filters" component={Filters} />
           <Route path="/articles/new" render={() => <h1>Add New Article</h1>} />
           <Route path="/articles" component={ArticleRoute} />
+          <Route path="/comments" component={Comments} />
         </Switch>
       </div>
     )

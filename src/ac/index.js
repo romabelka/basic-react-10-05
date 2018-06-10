@@ -9,7 +9,8 @@ import {
   LOAD_ARTICLE_COMMENTS,
   SUCCESS,
   FAIL,
-  START
+  START,
+  LOAD_PAGE_COMMENTS
 } from '../constants'
 import { fetchData } from './service'
 
@@ -95,5 +96,13 @@ export function loadArticleComments(articleId) {
     type: LOAD_ARTICLE_COMMENTS,
     payload: { articleId },
     callAPI: `/api/comment?article=${articleId}`
+  }
+}
+
+export function loadPageComments(perPage, offset, page) {
+  return {
+    type: LOAD_PAGE_COMMENTS,
+    payload: { page },
+    callAPI: `/api/comment?limit=${perPage}&offset=${offset}`
   }
 }
