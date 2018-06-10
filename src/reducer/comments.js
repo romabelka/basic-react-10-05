@@ -23,7 +23,8 @@ const CommentsPageRecord = Record({
 
 const ReducerRecord = Record({
   entities: new OrderedMap({}),
-  pages: new OrderedMap({})
+  pages: new OrderedMap({}),
+  total: null
 })
 
 export default (state = new ReducerRecord(), action) => {
@@ -62,6 +63,7 @@ export default (state = new ReducerRecord(), action) => {
     case LOAD_COMMENTS_PAGE + SUCCESS:
       const { records } = response
       return state
+        .set('total', response.total)
         .mergeIn(['entities'], arrToMap(records, CommentRecord))
         .setIn(
           ['pages', payload.page],

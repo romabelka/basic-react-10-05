@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import CommentsPage from '../comments-page'
+import { COMMENTS_URI } from '../../constants'
 
 class CommentsRoute extends Component {
   static propTypes = {}
 
   render() {
+    const path = `${COMMENTS_URI}:page`
     return (
       <div>
-        <Route path="/comments/:page" children={this.getCommentsPage} />
+        <Route path={path} children={this.getCommentsPage} />
       </div>
     )
   }

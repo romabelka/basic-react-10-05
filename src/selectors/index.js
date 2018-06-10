@@ -66,3 +66,4 @@ export const createCommentSelector = () => {
     return comments.get(id)
   })
 }
+export const totalSelector = (state) => state.comments.total
