@@ -9,7 +9,9 @@ import {
   LOAD_ARTICLE_COMMENTS,
   SUCCESS,
   FAIL,
-  START
+  START,
+  LOAD_COMMENTS_PAGE,
+  COMMENTS_PER_PAGE
 } from '../constants'
 import { fetchData } from './service'
 
@@ -95,5 +97,15 @@ export function loadArticleComments(articleId) {
     type: LOAD_ARTICLE_COMMENTS,
     payload: { articleId },
     callAPI: `/api/comment?article=${articleId}`
+  }
+}
+
+export function loadCommentsPage(page) {
+  const offset = (page - 1) * COMMENTS_PER_PAGE
+
+  return {
+    type: LOAD_COMMENTS_PAGE,
+    payload: { page },
+    callAPI: `/api/comment?limit=${COMMENTS_PER_PAGE}&offset=${offset}`
   }
 }

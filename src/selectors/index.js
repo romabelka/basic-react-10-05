@@ -1,12 +1,24 @@
 import { createSelector } from 'reselect'
 
 const idSelector = (_, props) => props.id
+export const pageSelector = (_, props) => props.page
 
+export const commentsPageMapSelector = (state) => state.comments.pages
 export const articlesMapSelector = (state) => state.articles.entities
 export const articleSelector = createSelector(
   articlesMapSelector,
   idSelector,
   (articles, id) => articles.get(id)
+)
+export const commentsPageSelector = createSelector(
+  commentsPageMapSelector,
+  pageSelector,
+  (pages, page) => {
+    const selectedPage = pages.get(page)
+    return selectedPage && selectedPage.comments && selectedPage.comments.length
+      ? selectedPage.comments
+      : []
+  }
 )
 
 export const articleListSelector = createSelector(
@@ -15,6 +27,11 @@ export const articleListSelector = createSelector(
 )
 
 export const loadingArticlesSelector = (state) => state.articles.loading
+export const loadingCommentsPageSelector = createSelector(
+  commentsPageMapSelector,
+  pageSelector,
+  (pages, page) => pages.getIn([page, 'loading'])
+)
 
 const filtersSelector = (state) => state.filters
 const commentMapSelector = (state) => state.comments.entities
@@ -49,3 +66,4 @@ export const createCommentSelector = () => {
     return comments.get(id)
   })
 }
+export const totalSelector = (state) => state.comments.total
