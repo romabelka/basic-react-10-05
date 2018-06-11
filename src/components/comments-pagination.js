@@ -11,11 +11,12 @@ import {
 } from '../selectors/index'
 
 class CommentsPagination extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.checkAndLoadCommentsForPage(this.props.page)
   }
 
-  componentWillReceiveProps({ page, checkAndLoadCommentsForPage }) {
+  componentDidUpdate() {
+    const { page, checkAndLoadCommentsForPage } = this.props
     checkAndLoadCommentsForPage(page)
   }
 
