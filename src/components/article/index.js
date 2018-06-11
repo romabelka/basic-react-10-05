@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import CSSTransition from 'react-addons-css-transition-group'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -8,7 +8,7 @@ import Loader from '../common/loader'
 import { deleteArticle, loadArticle } from '../../ac'
 import './article.css'
 
-class Article extends PureComponent {
+class Article extends Component {
   static propTypes = {
     id: PropTypes.string,
 
@@ -89,5 +89,7 @@ export default connect(
   (state, ownProps) => ({
     article: articleSelector(state, ownProps)
   }),
-  { deleteArticle, loadArticle }
+  { deleteArticle, loadArticle },
+  null,
+  { pure: false }
 )(Article)

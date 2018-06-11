@@ -13,7 +13,7 @@ import {
   START
 } from '../constants'
 import { fetchData } from './service'
-import { push } from 'connected-react-router'
+import { push, replace } from 'connected-react-router'
 
 export function increment() {
   return {
@@ -83,7 +83,7 @@ export function loadArticle(id) {
         })
       )
       .catch((error) => {
-        dispatch(push('/error'))
+        dispatch(replace('/error'))
 
         dispatch({
           type: LOAD_ARTICLE + FAIL,

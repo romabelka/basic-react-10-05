@@ -17,6 +17,11 @@ class CommentList extends Component {
     toggleOpen: PropTypes.func
   }
 
+  static contextTypes = {
+    user: PropTypes.string,
+    store: PropTypes.object
+  }
+
   componentWillReceiveProps({ isOpen, article, loadArticleComments }) {
     if (
       !this.props.isOpen &&
@@ -29,6 +34,7 @@ class CommentList extends Component {
   }
 
   render() {
+    console.log('--- context:', this.context)
     const { isOpen, toggleOpen } = this.props
     const text = isOpen ? 'hide comments' : 'show comments'
     return (
@@ -36,6 +42,7 @@ class CommentList extends Component {
         <button onClick={toggleOpen} className="test__comment-list--btn">
           {text}
         </button>
+        <h3>{this.context.user}</h3>
         <CSSTransition
           transitionName="comments"
           transitionEnterTimeout={500}
@@ -81,4 +88,6 @@ class CommentList extends Component {
   }
 }
 
-export default connect(null, { loadArticleComments })(toggleOpen(CommentList))
+export default connect(null, { loadArticleComments }, null, { pure: false })(
+  toggleOpen(CommentList)
+)
