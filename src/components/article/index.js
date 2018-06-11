@@ -89,7 +89,5 @@ export default connect(
   (state, ownProps) => ({
     article: articleSelector(state, ownProps)
   }),
-  { deleteArticle, loadArticle },
-  null,
-  { pure: false }
+  { deleteArticle, loadArticle }
 )(Article)

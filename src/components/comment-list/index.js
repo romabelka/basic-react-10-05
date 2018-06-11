@@ -83,6 +83,4 @@ class CommentList extends Component {
   }
 }
 
-export default connect(null, { loadArticleComments }, null, { pure: false })(
-  toggleOpen(CommentList)
-)
+export default connect(null, { loadArticleComments })(toggleOpen(CommentList))

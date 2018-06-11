@@ -8,6 +8,6 @@ export function fetchData(endpoint) {
         })
         .then(resolve)
         .catch(reject)
-    }, 1000)
+    }, 950)
   })
 }
