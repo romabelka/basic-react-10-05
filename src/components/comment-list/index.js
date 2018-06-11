@@ -7,6 +7,7 @@ import CommentForm from '../comment-form'
 import Loader from '../common/loader'
 import toggleOpen from '../../decorators/toggleOpen'
 import { loadArticleComments } from '../../ac'
+import { Consumer as UserConsumer } from '../../context/user'
 import './style.css'
 
 class CommentList extends Component {
@@ -15,11 +16,6 @@ class CommentList extends Component {
     //from toggleOpen decorator
     isOpen: PropTypes.bool,
     toggleOpen: PropTypes.func
-  }
-
-  static contextTypes = {
-    user: PropTypes.string,
-    store: PropTypes.object
   }
 
   componentWillReceiveProps({ isOpen, article, loadArticleComments }) {
@@ -34,7 +30,6 @@ class CommentList extends Component {
   }
 
   render() {
-    console.log('--- context:', this.context)
     const { isOpen, toggleOpen } = this.props
     const text = isOpen ? 'hide comments' : 'show comments'
     return (
@@ -42,7 +37,7 @@ class CommentList extends Component {
         <button onClick={toggleOpen} className="test__comment-list--btn">
           {text}
         </button>
-        <h3>{this.context.user}</h3>
+        <UserConsumer>{(username) => <h3>{username}</h3>}</UserConsumer>
         <CSSTransition
           transitionName="comments"
           transitionEnterTimeout={500}
