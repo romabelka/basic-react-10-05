@@ -1,7 +1,8 @@
 import React from 'react'
+import { translate } from '../../context/translate'
 
 function Loader() {
-  return <h1>Loading...</h1>
+  return <h1>{translate('Loading...')}</h1>
 }
 
 Loader.propTypes = {}

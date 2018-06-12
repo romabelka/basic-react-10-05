@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import ArticleList from '../article-list'
 import Article from '../article'
+import { translate } from '../../context/translate'
 
 class ArticlesPage extends Component {
   static propTypes = {}
@@ -19,7 +20,7 @@ class ArticlesPage extends Component {
     return match ? (
       <Article id={match.params.id} key={match.params.id} isOpen />
     ) : (
-      <h1>Please select an article</h1>
+      <h1>{translate('Please select an article')}</h1>
     )
   }
 }

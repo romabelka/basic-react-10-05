@@ -9,6 +9,7 @@ import toggleOpen from '../../decorators/toggleOpen'
 import { loadArticleComments } from '../../ac'
 import { Consumer as UserConsumer } from '../../context/user'
 import './style.css'
+import { translate } from '../../context/translate'
 
 class CommentList extends Component {
   static propTypes = {
@@ -31,7 +32,7 @@ class CommentList extends Component {
 
   render() {
     const { isOpen, toggleOpen } = this.props
-    const text = isOpen ? 'hide comments' : 'show comments'
+    const text = translate(isOpen ? 'hide comments' : 'show comments')
     return (
       <div>
         <button onClick={toggleOpen} className="test__comment-list--btn">
@@ -63,7 +64,9 @@ class CommentList extends Component {
         {comments.length ? (
           this.getComments()
         ) : (
-          <h3 className="test__comment-list--empty">No comments yet</h3>
+          <h3 className="test__comment-list--empty">
+            {translate('No comments yet')}
+          </h3>
         )}
         <CommentForm articleId={id} />
       </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addComment } from '../../ac'
 import './style.css'
+import { translate } from '../../context/translate'
 
 class CommentForm extends Component {
   static propTypes = {}
@@ -14,19 +15,21 @@ class CommentForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        user:{' '}
+        {translate('user')}:{' '}
         <input
           value={this.state.user}
           onChange={this.handleChange('user')}
           className={this.getClassName('user')}
         />
-        comment:{' '}
+        {translate('comment')}:{' '}
         <input
           value={this.state.text}
           onChange={this.handleChange('text')}
           className={this.getClassName('text')}
         />
-        <input type="submit" value="submit" disabled={!this.isValidForm()} />
+        <button type="submit" disabled={!this.isValidForm()}>
+          {this.translate('submit')}
+        </button>
       </form>
     )
   }
@@ -39,6 +42,8 @@ class CommentForm extends Component {
       text: ''
     })
   }
+
+  translate = (string) => translate(string)
 
   isValidForm = () => ['user', 'text'].every(this.isValidField)
 
