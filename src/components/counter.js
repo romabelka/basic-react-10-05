@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { increment } from '../ac'
+import { translate } from '../context/translate'
 
 class Counter extends Component {
   static propTypes = {
@@ -12,7 +13,7 @@ class Counter extends Component {
     return (
       <div>
         <h2>{this.props.count}</h2>
-        <button onClick={this.handleIncrement}>Increment</button>
+        <button onClick={this.handleIncrement}>{translate('Increment')}</button>
       </div>
     )
   }

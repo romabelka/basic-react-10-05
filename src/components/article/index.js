@@ -6,12 +6,13 @@ import { articleSelector } from '../../selectors'
 import CommentList from '../comment-list'
 import Loader from '../common/loader'
 import { deleteArticle, loadArticle } from '../../ac'
+import { loadingArticlesSelector } from '../../selectors'
 import './article.css'
+import { translate } from '../../context/translate'
 
 class Article extends Component {
   static propTypes = {
     id: PropTypes.string,
-
     article: PropTypes.shape({
       id: PropTypes.string,
       title: PropTypes.string,
@@ -33,10 +34,17 @@ class Article extends Component {
     })
   }
 
-  constructor(props) {
-    super(props)
-    const { loadArticle, article, id } = this.props
-    if (!article || (!article.text && !article.loading)) loadArticle(id)
+  componentDidMount() {
+    const { loadArticle, article, id, loading } = this.props
+    if (!loading && (!article || (!article.text && !article.loading)))
+      loadArticle(id)
+  }
+
+  componentDidUpdate() {
+    const { loadArticle, article, id, loading } = this.props
+    console.log('---', 'update, loading:', loading)
+    if (!loading && (!article || (!article.text && !article.loading)))
+      loadArticle(id)
   }
 
   render() {
@@ -47,9 +55,9 @@ class Article extends Component {
       <div>
         <h2>{article.title}</h2>
         <button onClick={this.toggleOpen} className="test__article_btn">
-          {isOpen ? 'close' : 'open'}
+          {translate(isOpen ? 'close' : 'open')}
         </button>
-        <button onClick={this.handleDelete}>delete me</button>
+        <button onClick={this.handleDelete}>{translate('delete me')}</button>
         <CSSTransition
           transitionAppear
           transitionName="article"
@@ -66,7 +74,7 @@ class Article extends Component {
   getBody() {
     const { article, isOpen } = this.props
     if (!isOpen) return null
-    if (this.state.hasError) return <h3>Some Error</h3>
+    if (this.state.hasError) return <h3>{translate('Some Error')}</h3>
     if (article.loading) return <Loader />
 
     return (
@@ -87,7 +95,8 @@ class Article extends Component {
 
 export default connect(
   (state, ownProps) => ({
-    article: articleSelector(state, ownProps)
+    article: articleSelector(state, ownProps),
+    loading: loadingArticlesSelector(state)
   }),
   { deleteArticle, loadArticle }
 )(Article)
