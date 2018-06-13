@@ -53,10 +53,7 @@ const text = {
 function i18n(key) {
   return (
     <Consumer>
-      {(locale) => {
-        console.log(key, locale)
-        return text[locale] ? text[locale][key] || key : key
-      }}
+      {(locale) => (text[locale] ? text[locale][key] || key : key)}
     </Consumer>
   )
 }
