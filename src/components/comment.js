@@ -2,11 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createCommentSelector } from '../selectors'
+import { i18n } from '../context/i18n'
 
 function Comment({ comment }) {
   return (
     <div>
-      {comment.text} <b>by {comment.user}</b>
+      {comment.text}{' '}
+      <b>
+        {i18n('author')} {comment.user}
+      </b>
     </div>
   )
 }

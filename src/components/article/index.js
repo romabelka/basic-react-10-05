@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import CSSTransition from 'react-addons-css-transition-group'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { articleSelector } from '../../selectors'
+import { articleSelector, loadingArticlesSelector } from '../../selectors'
 import CommentList from '../comment-list'
 import Loader from '../common/loader'
 import { deleteArticle, loadArticle } from '../../ac'
 import './article.css'
+import { i18n } from '../../context/i18n'
 
 class Article extends Component {
   static propTypes = {
@@ -33,10 +34,13 @@ class Article extends Component {
     })
   }
 
+  componentDidUpdate() {
+    this.checkAndLoadArticle()
+  }
+
   constructor(props) {
     super(props)
-    const { loadArticle, article, id } = this.props
-    if (!article || (!article.text && !article.loading)) loadArticle(id)
+    this.checkAndLoadArticle()
   }
 
   render() {
@@ -47,9 +51,9 @@ class Article extends Component {
       <div>
         <h2>{article.title}</h2>
         <button onClick={this.toggleOpen} className="test__article_btn">
-          {isOpen ? 'close' : 'open'}
+          {i18n(isOpen ? 'close' : 'open')}
         </button>
-        <button onClick={this.handleDelete}>delete me</button>
+        <button onClick={this.handleDelete}>{i18n('delete')}</button>
         <CSSTransition
           transitionAppear
           transitionName="article"
@@ -83,11 +87,18 @@ class Article extends Component {
     const { deleteArticle, article } = this.props
     deleteArticle(article.id)
   }
+
+  checkAndLoadArticle() {
+    const { loadArticle, article, id, loading } = this.props
+    if (!loading && (!article || (!article.text && !article.loading)))
+      loadArticle(id)
+  }
 }
 
 export default connect(
   (state, ownProps) => ({
-    article: articleSelector(state, ownProps)
+    article: articleSelector(state, ownProps),
+    loading: loadingArticlesSelector(state)
   }),
   { deleteArticle, loadArticle }
 )(Article)
