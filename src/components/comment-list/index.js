@@ -9,6 +9,7 @@ import toggleOpen from '../../decorators/toggleOpen'
 import { loadArticleComments } from '../../ac'
 import { Consumer as UserConsumer } from '../../context/user'
 import './style.css'
+import { i18n } from '../../context/i18n'
 
 class CommentList extends Component {
   static propTypes = {
@@ -31,7 +32,7 @@ class CommentList extends Component {
 
   render() {
     const { isOpen, toggleOpen } = this.props
-    const text = isOpen ? 'hide comments' : 'show comments'
+    const text = i18n(isOpen ? 'hideComments' : 'showComments')
     return (
       <div>
         <button onClick={toggleOpen} className="test__comment-list--btn">

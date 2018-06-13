@@ -7,6 +7,7 @@ import CommentList from '../comment-list'
 import Loader from '../common/loader'
 import { deleteArticle, loadArticle } from '../../ac'
 import './article.css'
+import { i18n } from '../../context/i18n'
 
 class Article extends Component {
   static propTypes = {
@@ -50,9 +51,9 @@ class Article extends Component {
       <div>
         <h2>{article.title}</h2>
         <button onClick={this.toggleOpen} className="test__article_btn">
-          {isOpen ? 'close' : 'open'}
+          {i18n(isOpen ? 'close' : 'open')}
         </button>
-        <button onClick={this.handleDelete}>delete me</button>
+        <button onClick={this.handleDelete}>{i18n('delete')}</button>
         <CSSTransition
           transitionAppear
           transitionName="article"
