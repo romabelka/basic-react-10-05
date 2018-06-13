@@ -102,23 +102,6 @@ export function loadArticleComments(articleId) {
   }
 }
 
-export function checkAndLoadArticle(articleId) {
-  return (dispatch, getState) => {
-    const { articles } = getState()
-    console.log(articles)
-    const article = articles.entities.get(articleId)
-    console.log(article)
-
-    if (articles.loading || !article) return
-
-    dispatch({
-      type: LOAD_ARTICLE + SUCCESS,
-      payload: { articleId },
-      response: article
-    })
-  }
-}
-
 export function checkAndLoadCommentsForPage(page) {
   return (dispatch, getState) => {
     const {

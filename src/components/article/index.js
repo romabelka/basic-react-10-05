@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import CSSTransition from 'react-addons-css-transition-group'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { articleSelector } from '../../selectors'
+import { articleSelector, loadingArticlesSelector } from '../../selectors'
 import CommentList from '../comment-list'
 import Loader from '../common/loader'
-import { deleteArticle, loadArticle, checkAndLoadArticle } from '../../ac'
+import { deleteArticle, loadArticle } from '../../ac'
 import './article.css'
 
 class Article extends Component {
@@ -33,18 +33,13 @@ class Article extends Component {
     })
   }
 
-  componentDidMount() {
-    checkAndLoadArticle(this.props.id)
-  }
-
   componentDidUpdate() {
-    checkAndLoadArticle(this.props.id)
+    this.checkAndLoadArticle()
   }
 
   constructor(props) {
     super(props)
-    const { checkAndLoadArticle, article, id } = this.props
-    if (!article || (!article.text && !article.loading)) checkAndLoadArticle(id)
+    this.checkAndLoadArticle()
   }
 
   render() {
@@ -91,11 +86,18 @@ class Article extends Component {
     const { deleteArticle, article } = this.props
     deleteArticle(article.id)
   }
+
+  checkAndLoadArticle() {
+    const { loadArticle, article, id, loading } = this.props
+    if (!loading && (!article || (!article.text && !article.loading)))
+      loadArticle(id)
+  }
 }
 
 export default connect(
   (state, ownProps) => ({
-    article: articleSelector(state, ownProps)
+    article: articleSelector(state, ownProps),
+    loading: loadingArticlesSelector(state)
   }),
-  { deleteArticle, checkAndLoadArticle }
+  { deleteArticle, loadArticle }
 )(Article)
