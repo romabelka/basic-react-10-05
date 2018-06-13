@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { articleSelector } from '../../selectors'
 import CommentList from '../comment-list'
 import Loader from '../common/loader'
-import { deleteArticle, loadArticle } from '../../ac'
+import { deleteArticle, loadArticle, checkAndLoadArticle } from '../../ac'
 import './article.css'
 
 class Article extends Component {
@@ -33,10 +33,18 @@ class Article extends Component {
     })
   }
 
+  componentDidMount() {
+    checkAndLoadArticle(this.props.id)
+  }
+
+  componentDidUpdate() {
+    checkAndLoadArticle(this.props.id)
+  }
+
   constructor(props) {
     super(props)
-    const { loadArticle, article, id } = this.props
-    if (!article || (!article.text && !article.loading)) loadArticle(id)
+    const { checkAndLoadArticle, article, id } = this.props
+    if (!article || (!article.text && !article.loading)) checkAndLoadArticle(id)
   }
 
   render() {
@@ -89,5 +97,5 @@ export default connect(
   (state, ownProps) => ({
     article: articleSelector(state, ownProps)
   }),
-  { deleteArticle, loadArticle }
+  { deleteArticle, checkAndLoadArticle }
 )(Article)
