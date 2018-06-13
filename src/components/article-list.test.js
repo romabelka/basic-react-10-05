@@ -40,4 +40,21 @@ describe('ArticleList', () => {
       />
     )
   })
+
+  it('should close an article', () => {
+    const wrapper = mount(<DecoratedArticleList articles={articles} />)
+    expect(wrapper.find('.test__article_body').length).toEqual(0)
+
+    wrapper
+      .find('.test__article_btn')
+      .at(0)
+      .simulate('click')
+    expect(wrapper.find('.test__article_body').length).toEqual(1)
+
+    wrapper
+      .find('.test__article_btn')
+      .at(0)
+      .simulate('click')
+    expect(wrapper.find('.test__article_body').length).toEqual(0)
+  })
 })

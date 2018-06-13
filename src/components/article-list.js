@@ -1,20 +1,33 @@
 import React, { Component } from 'react'
-import Article from './article'
-import accordion from '../decorators/accordion'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+import {
+  filtratedArticlesSelector,
+  loadingArticlesSelector
+} from '../selectors'
+import { loadAllArticles } from '../ac'
+import Loader from './common/loader'
 
 export class ArticleList extends Component {
-  componentWillMount() {
-    this.props.fetchData && this.props.fetchData()
+  static propTypes = {
+    articles: PropTypes.array.isRequired
+  }
+
+  constructor(props) {
+    super(props)
+    props.fetchData && props.fetchData()
   }
 
   render() {
-    const articleElements = this.props.articles.map((article) => (
+    const { articles, loading } = this.props
+    if (loading) return <Loader />
+
+    const articleElements = articles.map((article) => (
       <li key={article.id} className="test__article-list_item">
-        <Article
-          article={article}
-          isOpen={article.id === this.props.openItemId}
-          toggleOpen={this.props.toggleOpenItem}
-        />
+        <NavLink to={`/articles/${article.id}`} activeStyle={{ color: 'red' }}>
+          {article.title}
+        </NavLink>
       </li>
     ))
 
@@ -22,4 +35,10 @@ export class ArticleList extends Component {
   }
 }
 
-export default accordion(ArticleList)
+export default connect(
+  (state) => ({
+    articles: filtratedArticlesSelector(state),
+    loading: loadingArticlesSelector(state)
+  }),
+  { fetchData: loadAllArticles }
+)(ArticleList)
