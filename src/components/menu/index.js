@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import MenuItem from './menu-item'
+import t from '../../i18n'
 
 class Menu extends Component {
   static propTypes = {}
@@ -7,7 +8,7 @@ class Menu extends Component {
   render() {
     return (
       <div>
-        <h2>Main Menu</h2>
+        <h2>{t('mainMenu')}</h2>
         {this.props.children}
       </div>
     )
