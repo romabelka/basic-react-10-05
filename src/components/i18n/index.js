@@ -4,10 +4,14 @@ import { Consumer } from './context'
 export default (Component) =>
   class Translate extends ReactComponent {
     render() {
-      return <Component {...this.props} t={this.translate} />
+      return (
+        <Consumer>
+          {(dictionary) => (
+            <Component {...this.props} t={this.createTranslate(dictionary)} />
+          )}
+        </Consumer>
+      )
     }
 
-    translate = (text) => (
-      <Consumer>{(dictionary) => dictionary[text] || text}</Consumer>
-    )
+    createTranslate = (dictionary) => (text) => dictionary[text] || text
   }
