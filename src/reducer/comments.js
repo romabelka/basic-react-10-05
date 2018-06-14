@@ -48,7 +48,8 @@ export default (state = new ReducerRecord(), action) => {
           response.records.map((comment) => comment.id)
         )
         .setIn(['pagination', payload.page, 'loading'], false)
-  }
 
-  return state
+    default:
+      return state
+  }
 }

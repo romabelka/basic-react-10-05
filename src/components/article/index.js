@@ -6,6 +6,7 @@ import { articleSelector } from '../../selectors'
 import CommentList from '../comment-list'
 import Loader from '../common/loader'
 import { deleteArticle, loadArticle } from '../../ac'
+import i18n from '../i18n'
 import './article.css'
 
 class Article extends Component {
@@ -40,16 +41,16 @@ class Article extends Component {
   }
 
   render() {
-    const { article, isOpen } = this.props
+    const { article, isOpen, t } = this.props
     if (!article) return null
 
     return (
       <div>
         <h2>{article.title}</h2>
         <button onClick={this.toggleOpen} className="test__article_btn">
-          {isOpen ? 'close' : 'open'}
+          {t(isOpen ? 'close' : 'open')}
         </button>
-        <button onClick={this.handleDelete}>delete me</button>
+        <button onClick={this.handleDelete}>{t('delete me')}</button>
         <CSSTransition
           transitionAppear
           transitionName="article"
@@ -85,9 +86,11 @@ class Article extends Component {
   }
 }
 
-export default connect(
-  (state, ownProps) => ({
-    article: articleSelector(state, ownProps)
-  }),
-  { deleteArticle, loadArticle }
-)(Article)
+export default i18n(
+  connect(
+    (state, ownProps) => ({
+      article: articleSelector(state, ownProps)
+    }),
+    { deleteArticle, loadArticle }
+  )(Article)
+)
