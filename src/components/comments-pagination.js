@@ -47,13 +47,13 @@ class CommentsPagination extends Component {
     const items = new Array(Math.floor((total - 1) / 5) + 1)
       .fill()
       .map((_, i) => (
-        <li key={i}>
+        <div key={i}>
           <NavLink to={`/comments/${i + 1}`} activeStyle={{ color: 'red' }}>
             {i + 1}
           </NavLink>
-        </li>
+        </div>
       ))
-    return <ul>{items}</ul>
+    return <nav className="navbar mr-auto navbar-light bg-light">{items}</nav>
   }
 }
 

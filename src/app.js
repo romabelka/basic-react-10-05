@@ -8,10 +8,11 @@ import Counter from './components/counter'
 import Menu, { MenuItem } from './components/menu'
 import { Provider as UserProvider } from './context/user'
 import LangProvider from './components/i18n/lang-provider'
+import 'bootstrap/dist/css/bootstrap.css'
 
 class App extends Component {
   state = {
-    username: 'roma',
+    username: '',
     language: 'en'
   }
 
@@ -22,21 +23,29 @@ class App extends Component {
     return (
       <LangProvider language={this.state.language}>
         <UserProvider value={this.state.username}>
-          <div>
-            <ul>
-              <li onClick={this.changeLanguage('en')}>English</li>
-              <li onClick={this.changeLanguage('ru')}>Russian</li>
-            </ul>
+          <div className="container">
             <Menu>
               <MenuItem path="/filters">Filters</MenuItem>
               <MenuItem path="/articles">Articles</MenuItem>
               <MenuItem path="/counter">Counter</MenuItem>
               <MenuItem path="/comments/1">Comments</MenuItem>
+              <div>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={this.changeLanguage('en')}
+                >
+                  En
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={this.changeLanguage('ru')}
+                >
+                  Ru
+                </button>
+              </div>
             </Menu>
-            <UserForm
-              value={this.state.username}
-              onChange={this.handleUserChange}
-            />
             <Switch>
               <Redirect from="/" to="/articles" exact />
               <Route path="/counter" component={Counter} exact />

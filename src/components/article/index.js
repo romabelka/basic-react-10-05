@@ -47,10 +47,9 @@ class Article extends Component {
     return (
       <div>
         <h2>{article.title}</h2>
-        <button onClick={this.toggleOpen} className="test__article_btn">
-          {t(isOpen ? 'close' : 'open')}
+        <button onClick={this.handleDelete} className="btn btn-danger">
+          {t('delete me')}
         </button>
-        <button onClick={this.handleDelete}>{t('delete me')}</button>
         <CSSTransition
           transitionAppear
           transitionName="article"

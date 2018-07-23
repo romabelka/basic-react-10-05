@@ -35,7 +35,10 @@ class CommentList extends Component {
     const text = t(isOpen ? 'hide comments' : 'show comments')
     return (
       <div>
-        <button onClick={toggleOpen} className="test__comment-list--btn">
+        <button
+          onClick={toggleOpen}
+          className="test__comment-list--btn btn btn-primary"
+        >
           {text}
         </button>
         <UserConsumer>{(username) => <h3>{username}</h3>}</UserConsumer>
@@ -86,5 +89,8 @@ class CommentList extends Component {
 }
 
 export default i18n(
-  connect(null, { loadArticleComments })(toggleOpen(CommentList))
+  connect(
+    null,
+    { loadArticleComments }
+  )(toggleOpen(CommentList))
 )

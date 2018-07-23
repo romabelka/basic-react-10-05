@@ -19,7 +19,9 @@ class ArticlesPage extends Component {
     return match ? (
       <Article id={match.params.id} key={match.params.id} isOpen />
     ) : (
-      <h1>Please select an article</h1>
+      <h1 className="display-3" style={{ textAlign: 'center' }}>
+        Please select an article
+      </h1>
     )
   }
 }
