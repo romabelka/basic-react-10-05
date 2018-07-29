@@ -31,7 +31,7 @@ export class ArticleList extends Component {
       </li>
     ))
 
-    return <ul>{articleElements}</ul>
+    return <ul style={{ minWidth: 300 }}>{articleElements}</ul>
   }
 }
 

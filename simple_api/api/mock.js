@@ -55,15 +55,15 @@ var comments = [
   },
   {
     id: 'rflsbvyeuwr334rg5',
-    user: 'Random Name',
+    user: 'Andrey Babenko',
     text:
-      'Non qui Lorem qui commodo sint in esse non aliqua pariatur mollit veniam. Elit labore ad nisi anim adipisicing tempor velit commodo adipisicing ipsum ut. Nostrud cillum aliquip adipisicing id do occaecat est eiusmod adipisicing duis. Magna dolore et non nisi in non cillum officia elit non esse proident irure aute. Proident mollit amet enim dolore eiusmod dolor qui. Eiusmod reprehenderit cillum sit deserunt nostrud enim duis excepteur. Excepteur pariatur sunt in ipsum id minim est mollit.'
+      'The NP-hardness of the unweighted longest path problem can be shown using a reduction from the Hamiltonian path problem: a graph G has a Hamiltonian path if and only if its longest path has length n − 1, where n is the number of vertices in G. Because the Hamiltonian path problem is NP-complete, this reduction shows that the decision version of the longest path problem is also NP-complete. In this decision problem, the input is a graph G and a number k; the desired output is "yes" if G contains a path of k or more edges, and no otherwise.'
   },
   {
     id: '234faasffasgfq3r3eda',
-    user: 'Felix Soyferman',
+    user: 'Chandler Bing',
     text:
-      'Non qui Lorem qui commodo sint in esse non aliqua pariatur mollit veniam. Elit labore ad nisi anim adipisicing tempor velit commodo adipisicing ipsum ut. Nostrud cillum aliquip adipisicing id do occaecat est eiusmod adipisicing duis. Magna dolore et non nisi in non cillum officia elit non esse proident irure aute. Proident mollit amet enim dolore eiusmod dolor qui. Eiusmod reprehenderit cillum sit deserunt nostrud enim duis excepteur. Excepteur pariatur sunt in ipsum id minim est mollit.'
+      'If the longest path problem could be solved in polynomial time, it could be used to solve this decision problem, by finding a longest path and then comparing its length to the number k. Therefore, the longest path problem is NP-hard. The question "does there exist a simple path in a given graph with at least k edges" is NP-complete.'
   },
   {
     id: '23rfasdfasdvg',
@@ -100,10 +100,13 @@ var comments = [
 var articles = [
   {
     id: '56c782f18990ecf954f6e027',
-    date: '2016-06-09T15:03:23.000Z',
-    title: 'Commodo qui incididunt',
-    text:
-      'Commodo qui incididunt ex ut ea nulla et eu aliquip duis. Aute deserunt excepteur ullamco fugiat sunt aliquip exercitation do sint incididunt. Amet consectetur sint irure reprehenderit fugiat amet mollit. In commodo mollit ullamco cillum pariatur eiusmod cillum aute mollit. Culpa non sint eiusmod ad dolor velit dolore voluptate do adipisicing. Cupidatat sint est magna officia qui magna eu elit qui excepteur fugiat duis ex labore.\n\nAliquip veniam ad reprehenderit mollit exercitation id enim ut exercitation. Esse irure ipsum minim laborum reprehenderit irure ut. Tempor excepteur nisi nulla nostrud amet id cillum. Sint velit sint officia aliqua sint quis deserunt.\n\nAliquip dolor cillum deserunt enim nulla dolor amet irure cupidatat commodo laboris id aliqua. Labore aliqua adipisicing Lorem id adipisicing. Ad cupidatat et do anim ex commodo elit magna ad consequat. Nostrud sit eu laborum ut consequat fugiat aute culpa. Lorem tempor quis sunt ad consequat excepteur est. Enim voluptate cillum Lorem ex fugiat ea qui. Irure aute magna dolore eiusmod minim non ad anim dolore sint et.',
+    date: '2018-07-09T15:03:23.000Z',
+    title: 'Euclidean minimum spanning tree',
+    text: `The Euclidean minimum spanning tree or EMST is a minimum spanning tree of a set of n points in the plane (or more generally in ℝd), where the weight of the edge between each pair of points is the Euclidean distance between those two points. In simpler terms, an EMST connects a set of dots using lines such that the total length of all the lines is minimized and any dot can be reached from any other by following the lines.
+
+In the plane, an EMST for a given set of points may be found in Θ(n log n) time using O(n) space in the algebraic decision tree model of computation. Faster randomized algorithms of complexity O(n log log n) are known in more powerful models of computation that more accurately model the abilities of real computers.[1]
+
+In higher dimensions (d ≥ 3), finding an optimal algorithm remains an open problem.`,
     comments: [
       'qwerqwer',
       'lkjhsdlfkg',
@@ -114,50 +117,70 @@ var articles = [
   },
   {
     id: '56c782f17b4e0ba78c7ad717',
-    date: '2016-04-09T18:03:23.000Z',
-    title: 'Quis occaecat',
-    text:
-      'Quis occaecat duis aliqua reprehenderit excepteur nisi deserunt excepteur elit magna. Magna cillum anim veniam deserunt voluptate occaecat irure fugiat laboris proident. Tempor do magna deserunt cillum laborum cillum ut.\n\nEst sunt cupidatat in deserunt sit aliqua duis. Mollit consequat duis aliquip occaecat pariatur non do eiusmod dolore amet deserunt ullamco. Ea minim tempor exercitation do tempor nostrud dolor minim veniam laboris commodo ex duis. Do nostrud voluptate ullamco consequat anim tempor voluptate incididunt aliqua tempor.\n\nIn irure quis nostrud do. Labore laboris irure culpa reprehenderit pariatur laboris in commodo culpa enim cillum magna. Magna ipsum pariatur sunt in reprehenderit ipsum duis officia voluptate adipisicing ad officia. Duis est sint mollit amet laborum magna non quis nulla ipsum in veniam sit. Amet velit consequat esse esse ea. Ipsum non do ut cillum in adipisicing labore non commodo do laborum sunt.',
+    date: '2018-05-09T18:03:23.000Z',
+    title: "Karger's algorithm",
+    text: `In computer science and graph theory, Karger's algorithm is a randomized algorithm to compute a minimum cut of a connected graph. It was invented by David Karger and first published in 1993.[1]
+
+The idea of the algorithm is based on the concept of contraction of an edge 
+(u,v) in an undirected graph G=(V,E). Informally speaking, the contraction of an edge merges the nodes u and v
+v into one, reducing the total number of nodes of the graph by one. All other edges connecting either u or v are "reattached" to the merged node, effectively producing a multigraph. Karger's basic algorithm iteratively contracts randomly chosen edges until only two nodes remain; those nodes represent a cut in the original graph. By iterating this basic algorithm a sufficient number of times, a minimum cut can be found with high probability.`,
     comments: ['qwerqwertyy', 'sdfgsdfghu7u7urtv']
   },
   {
     id: '56c782f1978fdf9a0100df52',
-    date: '2016-06-02T11:03:23.000Z',
-    title: 'Hello my new world',
-    text:
-      'Culpa dolor deserunt veniam irure amet officia excepteur labore nisi labore ad labore laborum aute. Ea irure sit exercitation ex. Aliquip dolore duis ullamco labore qui. Et anim irure laborum quis ipsum. Adipisicing culpa est ea velit veniam dolor nisi. Sit cupidatat velit commodo eu.\n\nUt nulla ut irure cillum irure sint sunt cupidatat tempor laboris incididunt elit occaecat fugiat. Reprehenderit enim cupidatat consectetur pariatur ad pariatur consequat veniam do fugiat Lorem laborum do velit. Nulla aute magna magna nisi officia et. Aute adipisicing eu eiusmod tempor exercitation sint non enim laboris dolor adipisicing.\n\nEa do sint pariatur voluptate ad culpa irure. Cillum pariatur deserunt fugiat elit. Exercitation labore amet deserunt magna. Velit veniam aute officia aliqua ipsum veniam pariatur. Aliquip ullamco fugiat officia non sunt ad consequat ipsum est esse commodo reprehenderit. Ad quis consectetur est exercitation fugiat eiusmod. Laborum reprehenderit esse qui irure.',
+    date: '2018-07-02T11:03:23.000Z',
+    title: 'Euclidean shortest path',
+    text: `The Euclidean shortest path problem is a problem in computational geometry: given a set of polyhedral obstacles in a Euclidean space, and two points, find the shortest path between the points that does not intersect any of the obstacles.
+
+In two dimensions, the problem can be solved in polynomial time in a model of computation allowing addition and comparisons of real numbers, despite theoretical difficulties involving the numerical precision needed to perform such calculations. These algorithms are based on two different principles, either performing a shortest path algorithm such as Dijkstra's algorithm on a visibility graph derived from the obstacles or (in an approach called the continuous Dijkstra method) propagating a wavefront from one of the points until it meets the other.
+
+In three (and higher) dimensions the problem is NP-hard in the general case,[1] but there exist efficient approximation algorithms that run in polynomial time based on the idea of finding a suitable sample of points on the obstacle edges and performing a visibility graph calculation using these sample points.
+
+There are many results on computing shortest paths which stays on a polyhedral surface. Given two points s and t, say on the surface of a convex polyhedron, the problem is to compute a shortest path that never leaves the surface and connects s with t. This is a generalization of the problem from 2-dimension but it is much easier than the 3-dimensional problem.
+
+Also, there are variations of this problem, where the obstacles are weighted, i.e., one can go through an obstacle, but it incurs an extra cost to go through an obstacle. The standard problem is the special case where the obstacles have infinite weight. This is termed as the weighted region problem in the literature.`,
     comments: ['kjfviudfv089w74', 'r23uyrghasdfb7']
   },
   {
     id: '56c782f1e17f4f9311dfaa2c',
-    date: '2016-05-19T23:03:23.000Z',
-    title: 'Voluptate est officia',
-    text:
-      'Voluptate est officia pariatur tempor labore consequat consequat consectetur culpa enim. Amet laborum commodo in ullamco magna aliquip. Cupidatat veniam adipisicing labore irure nostrud sunt proident aute in. Sit Lorem consequat cillum enim id excepteur aliqua nostrud sint quis aute est est dolor. Sunt culpa est magna ad qui consequat exercitation. Enim sit ex do cupidatat laborum.\n\nOccaecat do tempor ex in dolor cupidatat do quis laboris anim. Et duis esse pariatur magna ex ipsum ut do ut id cillum. Nostrud fugiat sit minim ea. Nisi nulla sunt et et voluptate. Velit reprehenderit enim nulla mollit dolore excepteur Lorem do Lorem do cillum est qui. Ipsum mollit duis laboris incididunt non sit sunt proident. Aute voluptate id sunt aute proident officia.\n\nEnim ut nulla cillum officia cupidatat eiusmod amet laborum do labore id. Laborum in laboris aliquip anim consectetur magna reprehenderit consequat eiusmod esse Lorem consequat aliqua. Eiusmod voluptate mollit sint consectetur eu deserunt laboris ad et sunt nulla fugiat quis non. Dolor qui do cupidatat proident mollit amet sint pariatur non aliquip enim ex.',
+    date: '2018-07-19T23:03:23.000Z',
+    title: 'Longest path problem',
+    text: `In graph theory and theoretical computer science, the longest path problem is the problem of finding a simple path of maximum length in a given graph. A path is called simple if it does not have any repeated vertices; the length of a path may either be measured by its number of edges, or (in weighted graphs) by the sum of the weights of its edges. In contrast to the shortest path problem, which can be solved in polynomial time in graphs without negative-weight cycles, the longest path problem is NP-hard, meaning that it cannot be solved in polynomial time for arbitrary graphs unless P = NP. Stronger hardness results are also known showing that it is difficult to approximate. However, it has a linear time solution for directed acyclic graphs, which has important applications in finding the critical path in scheduling problems.`,
     comments: ['rflsbvyeuwr334rg5', '234faasffasgfq3r3eda']
   },
   {
     id: '56c782f197fe2bad471b3740',
-    date: '2016-06-04T15:03:23.000Z',
-    title: 'Ex sunt sunt aliqua',
-    text:
-      'Ex sunt sunt aliqua reprehenderit aliqua occaecat. Minim anim commodo officia veniam proident aute cillum eu sunt aute nostrud. Laboris fugiat velit ut pariatur occaecat adipisicing pariatur occaecat. Duis sint enim et consectetur quis pariatur laborum excepteur. Ipsum aliquip qui laborum commodo consectetur do velit veniam occaecat. Ad nisi dolor cillum elit magna dolor voluptate ea. Enim in duis ea consequat sunt Lorem aute.\n\nEst elit sunt quis officia reprehenderit do elit commodo eiusmod esse voluptate. Sit ipsum commodo sint voluptate culpa labore elit magna ullamco nostrud. Laboris magna magna anim labore mollit irure voluptate. Aute non magna aliqua aliqua sunt. Velit mollit consectetur aliqua id tempor ut. Tempor cupidatat aliquip excepteur occaecat incididunt nulla Lorem sint.\n\nNon commodo anim deserunt in et aliquip incididunt ut consectetur sunt esse commodo deserunt et. Tempor fugiat laboris cillum laboris labore. Deserunt quis ad do labore amet culpa officia. Esse et officia nostrud tempor occaecat officia anim incididunt amet sunt excepteur Lorem. Aute occaecat magna velit nisi sit anim consequat velit qui pariatur. Esse incididunt id officia aliqua anim ut et.',
+    date: '2018-06-04T15:03:23.000Z',
+    title: 'Damerau–Levenshtein distance',
+    text: `In information theory and computer science, the Damerau–Levenshtein distance (named after Frederick J. Damerau and Vladimir I. Levenshtein) is a string metric for measuring the edit distance between two sequences. Informally, the Damerau–Levenshtein distance between two words is the minimum number of operations (consisting of insertions, deletions or substitutions of a single character, or transposition of two adjacent characters) required to change one word into the other.
+
+The Damerau–Levenshtein distance differs from the classical Levenshtein distance by including transpositions among its allowable operations in addition to the three classical single-character edit operations (insertions, deletions and substitutions).
+
+In his seminal paper, Damerau stated that these four operations correspond to more than 80% of all human misspellings. Damerau's paper considered only misspellings that could be corrected with at most one edit operation. While the original motivation was to measure distance between human misspellings to improve applications such as spell checkers, Damerau–Levenshtein distance has also seen uses in biology to measure the variation between protein sequences.`,
     comments: ['23rfasdfasdvg', 'fqasfd4r35tga']
   },
   {
     id: '56c782f1a2c2c3268ddb3206',
-    date: '2016-06-08T19:03:23.000Z',
-    title: 'Commodo laborum sit nostru',
-    text:
-      'Commodo laborum sit nostrud reprehenderit cupidatat officia laboris. Ipsum minim culpa in enim. Voluptate dolor ea irure nisi incididunt enim magna.\n\nCupidatat quis cillum velit culpa tempor esse irure nostrud ea consectetur officia fugiat irure qui. Enim quis officia do in. Velit veniam ipsum consequat aliqua duis voluptate. Minim nisi ex aute ad.\n\nNisi Lorem ex tempor adipisicing labore. Quis occaecat fugiat pariatur labore culpa cillum laboris. Labore occaecat ut laborum sit ex do sit. Deserunt consectetur elit aute laboris est deserunt officia ullamco sit laboris officia aliquip. Aliqua ut sunt nostrud voluptate excepteur quis incididunt Lorem ut.',
+    date: '2018-06-08T19:03:23.000Z',
+    title: 'Match rating approach',
+    text: `The match rating approach (MRA) is a phonetic algorithm developed by Western Airlines in 1977 for the indexation and comparison of homophonous names.
+
+The algorithm itself has a simple set of encoding rules but a more lengthy set of comparison rules. The main mechanism being the similarity comparison which calculates the number of unmatched characters by comparing the strings from left to right and then from right to left and removing identical characters. This value is subtracted from 6 and then compared to a minimum threshold. The minimum threshold is defined by table A and is dependent upon the length of the strings.
+
+The encoded name is known (perhaps incorrectly) as a personal numeric identifier (PNI). The PNI codex can never contain more than 6 alpha only characters.
+
+Match rating approach performs well with names containing the letter "y" unlike the original flavour of the NYSIIS algorithm. For example, the surnames "Smith" and "Smyth" are successfully matched.
+
+MRA does not perform well with encoded names that differ in length by more than 2.`,
     comments: ['23qwfasdf3', 'dadsafw4f45w', '234erasfdastw4a']
   },
   {
     id: '56c782fghgfc2c3268ddb3206',
-    date: '2016-06-08T19:03:23.000Z',
-    title: 'Lorem Ipsum dolor',
-    text:
-      'Commodo laborum sit nostrud reprehenderit cupidatat officia laboris. Ipsum minim culpa in enim. Voluptate dolor ea irure nisi incididunt enim magna.\n\nCupidatat quis cillum velit culpa tempor esse irure nostrud ea consectetur officia fugiat irure qui. Enim quis officia do in. Velit veniam ipsum consequat aliqua duis voluptate. Minim nisi ex aute ad.\n\nNisi Lorem ex tempor adipisicing labore. Quis occaecat fugiat pariatur labore culpa cillum laboris. Labore occaecat ut laborum sit ex do sit. Deserunt consectetur elit aute laboris est deserunt officia ullamco sit laboris officia aliquip. Aliqua ut sunt nostrud voluptate excepteur quis incididunt Lorem ut.'
+    date: '2018-06-08T19:03:23.000Z',
+    title: 'Metaphone',
+    text: `Metaphone is a phonetic algorithm, published by Lawrence Philips in 1990, for indexing words by their English pronunciation.[1] It fundamentally improves on the Soundex algorithm by using information about variations and inconsistencies in English spelling and pronunciation to produce a more accurate encoding, which does a better job of matching words and names which sound similar. As with Soundex, similar-sounding words should share the same keys. Metaphone is available as a built-in operator in a number of systems.
+
+The original author later produced a new version of the algorithm, which he named Double Metaphone. Contrary to the original algorithm whose application is limited to English only, this version takes into account spelling peculiarities of a number of other languages. In 2009 Lawrence Philips released a third version, called Metaphone 3, which achieves an accuracy of approximately 99% for English words, non-English words familiar to Americans, and first names and family names commonly found in the United States, having been developed according to modern engineering standards against a test harness of prepared correct encodings.`
   }
 ]
 
