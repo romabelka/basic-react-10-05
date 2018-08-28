@@ -55,7 +55,13 @@ class CommentList extends Component {
 
   getBody() {
     const {
-      article: { comments, id, commentsLoading, commentsLoaded },
+      article: {
+        comments,
+        id,
+        commentsLoading,
+        commentsLoaded,
+        commentsSaving
+      },
       isOpen,
       t
     } = this.props
@@ -70,6 +76,7 @@ class CommentList extends Component {
         ) : (
           <h3 className="test__comment-list--empty">{t('No comments yet')}</h3>
         )}
+        {commentsSaving && <Loader />}
         <CommentForm articleId={id} />
       </div>
     )

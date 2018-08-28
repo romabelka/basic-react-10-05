@@ -66,6 +66,9 @@ const limits = {
   }
 }
 
-export default connect(null, (dispatch, ownProps) => ({
-  addComment: (comment) => dispatch(addComment(comment, ownProps.articleId))
-}))(CommentForm)
+export default connect(
+  null,
+  (dispatch, ownProps) => ({
+    addComment: (comment) => dispatch(addComment(comment, ownProps.articleId))
+  })
+)(CommentForm)

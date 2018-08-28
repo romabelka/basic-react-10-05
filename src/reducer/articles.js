@@ -18,6 +18,7 @@ const ArticleModel = new Record({
   loading: false,
   commentsLoading: false,
   commentsLoaded: false,
+  commentsSaving: false,
   comments: []
 })
 
@@ -35,11 +36,18 @@ export default (state = new ReducerRecord(), action) => {
     case DELETE_ARTICLE:
       return state.deleteIn(['entities', payload.id])
 
-    case ADD_COMMENT:
-      return state.updateIn(
-        ['entities', payload.articleId, 'comments'],
-        (comments) => comments.concat(randomId)
+    case ADD_COMMENT + START:
+      return state.setIn(
+        ['entities', payload.articleId, 'commentsSaving'],
+        true
       )
+
+    case ADD_COMMENT + SUCCESS:
+      return state
+        .setIn(['entities', payload.articleId, 'commentsSaving'], false)
+        .updateIn(['entities', payload.articleId, 'comments'], (comments) =>
+          comments.concat(randomId)
+        )
 
     case LOAD_ALL_ARTICLES + START:
       return state.set('loading', true)

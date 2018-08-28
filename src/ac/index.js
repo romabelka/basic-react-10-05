@@ -43,10 +43,20 @@ export function changeSelection(selected) {
 }
 
 export function addComment(comment, articleId) {
-  return {
-    type: ADD_COMMENT,
-    payload: { comment, articleId },
-    generateId: true
+  return (dispatch) => {
+    dispatch({
+      type: ADD_COMMENT + START,
+      payload: { articleId },
+      generateId: true
+    })
+
+    setTimeout(() => {
+      dispatch({
+        type: ADD_COMMENT + SUCCESS,
+        payload: { comment, articleId },
+        generateId: true
+      })
+    }, 500)
   }
 }
 

@@ -24,7 +24,7 @@ export default (state = new ReducerRecord(), action) => {
   const { type, payload, randomId, response } = action
 
   switch (type) {
-    case ADD_COMMENT:
+    case ADD_COMMENT + SUCCESS:
       return state.setIn(
         ['entities', randomId],
         new CommentRecord({
