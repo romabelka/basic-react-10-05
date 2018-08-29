@@ -35,12 +35,13 @@ class CommentList extends Component {
     const text = t(isOpen ? 'hide comments' : 'load comments')
     return (
       <div>
-        <button
+        <div
           onClick={toggleOpen}
-          className="test__comment-list--btn btn btn-sm btn-outline-primary"
+          className="test__comment-list--btn btn btn-sm btn-primary ld-ext-right running"
         >
           {text}
-        </button>
+          <div className="ld ld-ring ld-spin" />
+        </div>
         <UserConsumer>{(username) => <h3>{username}</h3>}</UserConsumer>
         <CSSTransition
           transitionName="comments"
