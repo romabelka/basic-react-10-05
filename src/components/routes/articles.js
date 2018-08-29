@@ -8,9 +8,13 @@ class ArticlesPage extends Component {
 
   render() {
     return (
-      <div style={{ display: 'flex' }}>
-        <ArticleList />
-        <Route path="/articles/:id" children={this.getArticle} />
+      <div className="row">
+        <div className="col-3">
+          <ArticleList />
+        </div>
+        <div className="col-9">
+          <Route path="/articles/:id" children={this.getArticle} />
+        </div>
       </div>
     )
   }

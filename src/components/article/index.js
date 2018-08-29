@@ -46,10 +46,15 @@ class Article extends Component {
 
     return (
       <div>
-        <h2>{article.title}</h2>
-        <button onClick={this.handleDelete} className="btn btn-danger">
-          {t('delete me')}
-        </button>
+        <h2>
+          {article.title}
+          <button
+            onClick={this.handleDelete}
+            className="btn btn-link btn-delete"
+          >
+            {t('delete me')}
+          </button>
+        </h2>
         <CSSTransition
           transitionAppear
           transitionName="article"

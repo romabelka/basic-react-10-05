@@ -24,14 +24,17 @@ export class ArticleList extends Component {
     if (loading) return <Loader />
 
     const articleElements = articles.map((article) => (
-      <li key={article.id} className="test__article-list_item">
-        <NavLink to={`/articles/${article.id}`} activeStyle={{ color: 'red' }}>
+      <li key={article.id} className="list-group-item test__article-list_item">
+        <NavLink
+          to={`/articles/${article.id}`}
+          activeStyle={{ color: 'black' }}
+        >
           {article.title}
         </NavLink>
       </li>
     ))
 
-    return <ul style={{ minWidth: 300 }}>{articleElements}</ul>
+    return <ul className="list-group">{articleElements}</ul>
   }
 }
 
