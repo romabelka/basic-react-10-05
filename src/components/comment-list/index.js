@@ -32,12 +32,12 @@ class CommentList extends Component {
 
   render() {
     const { isOpen, toggleOpen, t } = this.props
-    const text = t(isOpen ? 'hide comments' : 'show comments')
+    const text = t(isOpen ? 'hide comments' : 'load comments')
     return (
       <div>
         <button
           onClick={toggleOpen}
-          className="test__comment-list--btn btn btn-primary"
+          className="test__comment-list--btn btn btn-sm btn-outline-primary"
         >
           {text}
         </button>
@@ -84,7 +84,7 @@ class CommentList extends Component {
 
   getComments() {
     return (
-      <ul>
+      <ul className="list-comments">
         {this.props.article.comments.map((id) => (
           <li key={id} className="test__comment-list--item">
             <Comment id={id} />

@@ -6,7 +6,7 @@ class Menu extends Component {
 
   render() {
     return (
-      <nav className="navbar mr-auto navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
         {this.props.children}
       </nav>
     )

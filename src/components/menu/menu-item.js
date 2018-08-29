@@ -8,10 +8,10 @@ class MenuItem extends Component {
     return (
       <NavLink
         to={this.props.path}
-        activeStyle={{ color: 'red' }}
+        activeStyle={{ color: 'black' }}
         className="nav-item"
         activeClassName="active"
-        style={{ margin: '5px 15px' }}
+        style={{ margin: '0 16px' }}
       >
         {this.props.children}
       </NavLink>

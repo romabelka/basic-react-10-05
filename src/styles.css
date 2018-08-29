@@ -1,0 +1,46 @@
+.container {
+    padding: 32px 0;
+}
+.navbar {
+    margin-bottom: 32px;
+}
+a {
+    color: #999;
+}
+a:hover {
+    color: #000;
+    text-decoration: none;
+}
+.btn-delete {
+    color: red;
+}
+.btn-delete:hover {
+    text-decoration: none;
+    color: darkred;
+}
+.test__comment-list--btn {
+    margin-top: 24px;
+}
+.form-comments {
+    max-width: 400px;
+}
+.list-comments {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    margin: 32px 0;
+}
+.list-comments li {
+    margin-bottom: 16px;
+    padding: 8px;
+    background: #F6F7F9;
+    border-radius: 4px
+}
+.test__comment-list--item b {
+    display: block;
+    margin-top: 4px;
+    font-style: italic;
+    color: #999;
+    font-weight: normal;
+}
