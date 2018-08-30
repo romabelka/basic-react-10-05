@@ -41,7 +41,7 @@ class Article extends Component {
   }
 
   render() {
-    const { article, isOpen, t } = this.props
+    const { article, t } = this.props
     if (!article) return null
 
     return (
@@ -52,7 +52,7 @@ class Article extends Component {
             onClick={this.handleDelete}
             className="btn btn-link btn-delete"
           >
-            {t('delete me')}
+            {t('delete article')}
           </button>
         </h2>
         <CSSTransition

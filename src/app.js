@@ -34,7 +34,7 @@ class App extends Component {
               <form className="form-inline my-2 my-lg-0">
                 <button
                   type="button"
-                  className="btn btn-sm btn-outline-secondary"
+                  className="btn btn-sm btn-outline-primary"
                   onClick={this.changeLanguage('en')}
                   style={{ margin: '0 4px' }}
                 >

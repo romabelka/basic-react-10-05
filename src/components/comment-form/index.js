@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addComment } from '../../ac'
 import './style.css'
+import Loader from '../common/loader'
 
 class CommentForm extends Component {
   static propTypes = {}
@@ -12,10 +13,12 @@ class CommentForm extends Component {
   }
 
   render() {
+    const { loading } = this.props
+
     return (
       <form onSubmit={this.handleSubmit} className="form-comments">
         <div className="form-group">
-          <label for="user">User: </label>
+          <label htmlFor="user">User: </label>
           <input
             value={this.state.user}
             onChange={this.handleChange('user')}
@@ -23,26 +26,39 @@ class CommentForm extends Component {
           />
         </div>
         <div className="form-group">
-          <label for="user">Comment: </label>
+          <label htmlFor="user">Comment: </label>
           <textarea
             onChange={this.handleChange('text')}
             className={this.getClassName('text')}
-          >
-            {this.state.text}
-          </textarea>
+            value={this.state.text}
+            ref={this.areaRef}
+          />
         </div>
-        <input
+        <button
           type="submit"
-          value="submit"
-          className="btn btn-primary"
+          className={`btn btn-sm btn-primary ${
+            loading ? 'ld-ext-right running' : ''
+          }`}
           disabled={!this.isValidForm()}
-        />
+        >
+          Submit {loading && <div className="ld ld-ring ld-spin" />}
+        </button>
       </form>
     )
   }
 
+  areaRef = (ref) => {
+    ref && ref.addEventListener('keydown', this.submitForm)
+  }
+
+  submitForm = (e) => {
+    if (e.keyCode == 13 && e.metaKey) {
+      this.handleSubmit()
+    }
+  }
+
   handleSubmit = (ev) => {
-    ev.preventDefault()
+    ev && ev.preventDefault()
     this.props.addComment(this.state)
     this.setState({
       user: '',

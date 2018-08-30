@@ -32,15 +32,14 @@ class CommentList extends Component {
 
   render() {
     const { isOpen, toggleOpen, t } = this.props
-    const text = t(isOpen ? 'hide comments' : 'load comments')
+    const text = t(isOpen ? 'hide comments' : 'show comments')
     return (
       <div>
         <div
           onClick={toggleOpen}
-          className="test__comment-list--btn btn btn-sm btn-primary ld-ext-right running"
+          className="test__comment-list--btn btn btn-sm btn-primary"
         >
           {text}
-          <div className="ld ld-ring ld-spin" />
         </div>
         <UserConsumer>{(username) => <h3>{username}</h3>}</UserConsumer>
         <CSSTransition
@@ -77,8 +76,7 @@ class CommentList extends Component {
         ) : (
           <h3 className="test__comment-list--empty">{t('No comments yet')}</h3>
         )}
-        {commentsSaving && <Loader />}
-        <CommentForm articleId={id} />
+        <CommentForm articleId={id} loading={commentsSaving} />
       </div>
     )
   }
