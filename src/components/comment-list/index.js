@@ -32,15 +32,16 @@ class CommentList extends Component {
 
   render() {
     const { isOpen, toggleOpen, t } = this.props
-    const text = t(isOpen ? 'hide comments' : 'show comments')
+    const text = t(isOpen ? 'hide comments' : 'load comments')
     return (
       <div>
-        <button
+        <div
           onClick={toggleOpen}
-          className="test__comment-list--btn btn btn-primary"
+          className="test__comment-list--btn btn btn-sm btn-primary ld-ext-right running"
         >
           {text}
-        </button>
+          <div className="ld ld-ring ld-spin" />
+        </div>
         <UserConsumer>{(username) => <h3>{username}</h3>}</UserConsumer>
         <CSSTransition
           transitionName="comments"
@@ -84,7 +85,7 @@ class CommentList extends Component {
 
   getComments() {
     return (
-      <ul>
+      <ul className="list-comments">
         {this.props.article.comments.map((id) => (
           <li key={id} className="test__comment-list--item">
             <Comment id={id} />

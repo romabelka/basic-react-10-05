@@ -13,20 +13,30 @@ class CommentForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        user:{' '}
+      <form onSubmit={this.handleSubmit} className="form-comments">
+        <div className="form-group">
+          <label for="user">User: </label>
+          <input
+            value={this.state.user}
+            onChange={this.handleChange('user')}
+            className={this.getClassName('user')}
+          />
+        </div>
+        <div className="form-group">
+          <label for="user">Comment: </label>
+          <textarea
+            onChange={this.handleChange('text')}
+            className={this.getClassName('text')}
+          >
+            {this.state.text}
+          </textarea>
+        </div>
         <input
-          value={this.state.user}
-          onChange={this.handleChange('user')}
-          className={this.getClassName('user')}
+          type="submit"
+          value="submit"
+          className="btn btn-primary"
+          disabled={!this.isValidForm()}
         />
-        comment:{' '}
-        <input
-          value={this.state.text}
-          onChange={this.handleChange('text')}
-          className={this.getClassName('text')}
-        />
-        <input type="submit" value="submit" disabled={!this.isValidForm()} />
       </form>
     )
   }
@@ -44,7 +54,8 @@ class CommentForm extends Component {
 
   isValidField = (type) => this.state[type].length >= limits[type].min
 
-  getClassName = (type) => (this.isValidField(type) ? '' : 'form-input__error')
+  getClassName = (type) =>
+    this.isValidField(type) ? 'form-control' : 'form-control form-input__error'
 
   handleChange = (type) => (ev) => {
     const { value } = ev.target

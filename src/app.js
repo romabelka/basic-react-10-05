@@ -8,6 +8,7 @@ import Menu, { MenuItem } from './components/menu'
 import { Provider as UserProvider } from './context/user'
 import LangProvider from './components/i18n/lang-provider'
 import 'bootstrap/dist/css/bootstrap.css'
+import './styles.css'
 
 class App extends Component {
   state = {
@@ -24,27 +25,31 @@ class App extends Component {
         <UserProvider value={this.state.username}>
           <div className="container">
             <Menu>
-              <MenuItem path="/filters">Filters</MenuItem>
-              <MenuItem path="/articles">Articles</MenuItem>
-              <MenuItem path="/counter">Counter</MenuItem>
-              <MenuItem path="/comments/1">Comments</MenuItem>
-              <div>
+              <div className="collapse navbar-collapse">
+                <MenuItem path="/filters">Filters</MenuItem>
+                <MenuItem path="/articles">Articles</MenuItem>
+                <MenuItem path="/counter">Counter</MenuItem>
+                <MenuItem path="/comments/1">Comments</MenuItem>
+              </div>
+              <form className="form-inline my-2 my-lg-0">
                 <button
                   type="button"
-                  className="btn btn-primary"
+                  className="btn btn-sm btn-outline-secondary"
                   onClick={this.changeLanguage('en')}
+                  style={{ margin: '0 4px' }}
                 >
                   En
                 </button>
                 <button
                   type="button"
-                  className="btn btn-secondary"
+                  className="btn btn-sm btn-outline-secondary"
                   onClick={this.changeLanguage('ru')}
                 >
                   Ru
                 </button>
-              </div>
+              </form>
             </Menu>
+
             <Switch>
               <Redirect from="/" to="/articles" exact />
               <Route path="/counter" component={Counter} exact />
